@@ -1,11 +1,33 @@
+import 'dart:io';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
+import 'helper/AppNavigator.dart';
+
 void main() {
+  HttpOverrides.global = new MyHttpOverrides();
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(MyApp());
 }
+class MyCustomScrollBehavior extends MaterialScrollBehavior {
+  // Override behavior methods and getters like dragDevices
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+    PointerDeviceKind.touch,
+    PointerDeviceKind.mouse,
+  };
+}
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
+
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -31,9 +53,13 @@ class _MyApp extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home:Stack(children: [
         WillPopScope(
             child:MaterialApp(
+              // scrollBehavior: MyCustomScrollBehavior(),
+              // theme: ThemeData(fontFamily: 'IRANSansX'),
+              debugShowCheckedModeBanner: false,
               navigatorKey: AppNavigator.navigatorKey,
               home: FirstRoute(),
             ),
@@ -115,26 +141,3 @@ class SecondRoute extends StatelessWidget {
   }
 }
 
-class AppNavigator{
-  static List<int> list= [];
-  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
-  static void pop(context) {
-    print('onWillPop');
-    if(list.length > 0){
-      print('remove onWillPop');
-      list.remove(list[list.length - 1]);
-
-      var _context = AppNavigator.navigatorKey.currentContext;
-      Navigator.pop(_context!);
-    }
-  }
-  static void push(context, Widget widget) {
-    var _context = AppNavigator.navigatorKey.currentContext;
-    list.add(0);
-    Navigator.push(
-      _context!,
-      MaterialPageRoute(builder: (context) => widget, fullscreenDialog: false),
-    );
-  }
-}
