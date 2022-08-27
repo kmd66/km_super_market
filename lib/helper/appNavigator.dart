@@ -1,37 +1,63 @@
 import 'package:flutter/material.dart';
+import '../core/abstract/baseNavigationWidget.dart';
+import '../core/model/enums.dart';
+import '../main.dart';
 
 class AppNavigator{
-  static List<int> list= [];
-  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
+  List<int> list= [];
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  static Widget? _view;
-  static Widget? get view => _view;
+  Widget? _view;
+  Widget? get view => _view;
 
-  static  String _routeTitle = '';
-  static  String get routeTitle => _routeTitle;
+  String _routeTitle = '';
+  String get routeTitle => _routeTitle;
 
-  static String _routeUrl= '';
-  static String get routeUrl => _routeUrl;
+   String _routeUrl= '';
+   String get routeUrl => _routeUrl;
 
-
-  static void pop(context) {
-    print('onWillPop');
+   void pop() {
     if(list.length > 0){
-      print('remove onWillPop');
-      list.remove(list[list.length - 1]);
-
-      var _context = AppNavigator.navigatorKey.currentContext;
+      var _context = navigatorKey.currentContext;
+    print('length ${list.length} $_context');
       Navigator.pop(_context!);
+    list.remove(list[list.length - 1]);
     }
   }
 
-  static void push(context, Widget widget) {
-    var _context = AppNavigator.navigatorKey.currentContext;
+   void push(RouteList route ) {
+    var _context = navigatorKey.currentContext;
     list.add(0);
+    var v =getView(route);
+
+    print('uuuuuuuuu ${list.length} ${route.toString()} $_context');
+
     Navigator.push(
       _context!,
-      MaterialPageRoute(builder: (context) => widget, fullscreenDialog: false),
+      MaterialPageRoute(builder: (context) => v, fullscreenDialog: false),
     );
+  }
+   Widget getView(RouteList route) {
+    switch (route) {
+      case RouteList.HomePage:
+        _routeTitle = 'صفحه اصلی';
+        return HomePage();
+        break;
+      case RouteList.AboutPage:
+        _routeTitle = 'درباره ما';
+        return AboutPage();
+        break;
+
+      case RouteList.LoginPage:
+        _routeTitle = 'رمز پویا';
+        return LoginPage();
+        break;
+
+      default :
+        _routeTitle = 'صفحه اصلی';
+        return HomePage();
+        break;
+    }
   }
 }

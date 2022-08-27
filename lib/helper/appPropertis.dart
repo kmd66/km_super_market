@@ -12,7 +12,7 @@ const double maxWidth = 1024.0;
 const double bodyWidth = maxWidth;
 
 class AppPropertis {
-    static RouteList currentRoute = RouteList.HomePage;
+  static RouteList currentRoute = RouteList.HomePage;
   static StateType currentState = StateType.Main;
   static List<Navigation> navigations = [Navigation(route: RouteList.HomePage)];
 

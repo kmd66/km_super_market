@@ -3,8 +3,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
+import 'core/abstract/baseNavigationWidget.dart';
+import 'core/model/enums.dart';
 import 'helper/appNavigator.dart';
+import 'helper/objectColor.dart';
+import 'helper/textStyle.dart';
 
 void main() {
   HttpOverrides.global = new MyHttpOverrides();
@@ -30,6 +33,8 @@ class MyHttpOverrides extends HttpOverrides{
 
 
 class MyApp extends StatefulWidget {
+  static  AppNavigator navigator = AppNavigator();
+
   const MyApp({super.key});
   @override
   State<MyApp> createState() => _MyApp();
@@ -60,51 +65,66 @@ class _MyApp extends State<MyApp> {
               // scrollBehavior: MyCustomScrollBehavior(),
               // theme: ThemeData(fontFamily: 'IRANSansX'),
               debugShowCheckedModeBanner: false,
-              navigatorKey: AppNavigator.navigatorKey,
-              home: FirstRoute(),
+              navigatorKey: MyApp.navigator.navigatorKey,
+              home: HomePage(),
             ),
             onWillPop: (){
-              print('Future.value(false)');
-              AppNavigator.pop(context);
+              MyApp.navigator.pop();
               return Future.value(false);
             }),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(height: 100, width: 100,color: Colors.red,
-            child: ElevatedButton(
-              onPressed: () {
-                AppNavigator.pop(context);
-              },
-              child: const Text('Go back!'),
-            )
-            ,),
-        )
+        Container(height: 0, width: 0)
+        // Align(
+        //   alignment: Alignment.bottomCenter,
+        //   child: Container(height: 100, width: 100,color: Colors.red,
+        //     child: ElevatedButton(
+        //       onPressed: () {
+        //         MyApp.navigator.pop();
+        //       },
+        //       child: const Text('Go back!'),
+        //     )
+        //     ,),
+        // )
       ],),
     );
   }
 }
 
-class FirstRoute extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('First Route'),
+
+          backgroundColor: ObjectColor.base,
+          shadowColor:Colors.transparent,
+          centerTitle: false,
+          automaticallyImplyLeading: false,
+          titleSpacing: 0,
+          title:   Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Padding(padding: EdgeInsets.symmetric(horizontal: 5.0),child: Text('First Route', style: Style.h4(color: white)),)
+            ],
+          ),
+          actions: [
+            IconButton(
+              onPressed: () => MyApp.navigator.pop(),
+              icon: Icon(Icons.arrow_forward_ios),
+            ),
+          ]
       ),
       body: Center(
           child:Column(children: [
             ElevatedButton(
               child: const Text('Open route'),
               onPressed: () {
-                AppNavigator.push(
-                    context,
-                    SecondRoute()
-                );
+                MyApp.navigator.push(RouteList.AboutPage);
               },
             ),
             ElevatedButton(
               onPressed: () {
-                AppNavigator.pop(context);
+                MyApp.navigator.pop();
               },
               child: const Text('Go back!'),
             )
@@ -115,28 +135,46 @@ class FirstRoute extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPage createState() => _LoginPage('Setting');
+}
+
+class _LoginPage extends BaseNavigationWidget<LoginPage> {
+  _LoginPage(String appBarTitle)
+      : super(title:appBarTitle);
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Column(children: [
-          ElevatedButton(
-            child: const Text('Open route'),
-            onPressed: () {
-              AppNavigator.push(
-                  context,FirstRoute()
-              );
-            },
-          ),
-          ElevatedButton(
-            onPressed: () {
-              AppNavigator.pop(context);
-            },
-            child: const Text('Go back!'),
-          ),
-        ],)
+  Widget stateBuild(BuildContext context) {
+    return Container(
+      color: Colors.red,
+      child: Center(
+          child: Column(children: [
+            ElevatedButton(
+              child: const Text('Open route'),
+              onPressed: () {
+                MyApp.navigator.push(RouteList.HomePage);
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                MyApp.navigator.pop();
+              },
+              child: const Text('Go back!'),
+            ),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+          ],)
+      ),
     );
   }
 }
