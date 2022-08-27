@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import 'helper/AppNavigator.dart';
+import 'helper/appNavigator.dart';
 
 void main() {
   HttpOverrides.global = new MyHttpOverrides();
