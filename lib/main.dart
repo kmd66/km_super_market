@@ -3,9 +3,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:prj/pages/menus/menus.dart';
 import 'core/abstract/baseNavigationWidget.dart';
 import 'core/model/enums.dart';
+import 'core/model/navigation.dart';
 import 'helper/appNavigator.dart';
+import 'helper/appPropertis.dart';
 import 'helper/objectColor.dart';
 import 'helper/textStyle.dart';
 
@@ -34,6 +37,8 @@ class MyHttpOverrides extends HttpOverrides{
 
 class MyApp extends StatefulWidget {
   static  AppNavigator navigator = AppNavigator();
+  static  Menus menus = Menus();
+  static  AppPropertis propertis = AppPropertis();
 
   const MyApp({super.key});
   @override
@@ -137,17 +142,15 @@ class HomePage extends StatelessWidget {
 
 class LoginPage extends StatefulWidget {
   @override
-  _LoginPage createState() => _LoginPage('Setting');
+  _LoginPage createState() => _LoginPage();
 }
 
 class _LoginPage extends BaseNavigationWidget<LoginPage> {
-  _LoginPage(String appBarTitle)
-      : super(title:appBarTitle);
+  _LoginPage() : super(ChengState(StateType.Main), RouteList.AboutPage);
 
   @override
   Widget stateBuild(BuildContext context) {
     return Container(
-      color: Colors.red,
       child: Center(
           child: Column(children: [
             ElevatedButton(

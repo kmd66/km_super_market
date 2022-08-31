@@ -6,28 +6,31 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import '../core/model/enums.dart';
 import '../core/model/navigation.dart';
 
-const marginBody = EdgeInsets.symmetric(horizontal: 0.0,vertical: 15.0);
-const paddingBody =  EdgeInsets.all(15.0);
-const double maxWidth = 1024.0;
-const double bodyWidth = maxWidth;
 
 class AppPropertis {
-  static RouteList currentRoute = RouteList.HomePage;
-  static StateType currentState = StateType.Main;
-  static List<Navigation> navigations = [Navigation(route: RouteList.HomePage)];
 
-  static bool get isAndroid => !kIsWeb && Platform.isAndroid;
+  RouteList currentRoute = RouteList.HomePage;
+  StateType currentState = StateType.Main;
+  List<Navigation> navigations = [Navigation(route: RouteList.HomePage)];
 
-  static dynamic currentUsers;
+  bool get isAndroid => !kIsWeb && Platform.isAndroid;
 
-  static dynamic currentUser;
-  static dynamic accessToken;
+  EdgeInsets marginBody = EdgeInsets.symmetric(horizontal: 0.0,vertical: 15.0);
+  EdgeInsets paddingBody =  EdgeInsets.all(15.0);
+  double maxWidth = 1024.0;
+  double get bodyWidth => maxWidth;
 
-  static dynamic objectToken() =>
+  dynamic currentUsers;
+
+  dynamic currentUser;
+  dynamic accessToken;
+
+  dynamic objectToken() =>
       accessToken != null ? json.decode(accessToken) : null;
 
-  static dynamic Authorization() =>
+  dynamic Authorization() =>
       accessToken != null ? 'Bearer ${json.decode(accessToken)['access_token']}' : null;
 
-  static String appVersion = "";
+  String appVersion = "";
+
 }

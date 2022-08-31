@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,115 +8,107 @@ import '../../helper/AppNavigator.dart';
 import '../../helper/objectColor.dart';
 import '../../helper/textStyle.dart';
 import '../../main.dart';
+import '../Widget/bottomNavigationBarButton.dart';
 import '../Widget/getTopo.dart';
+import '../Widget/showObj.dart';
 import '../model/enums.dart';
+import '../model/navigation.dart';
+import 'appBarWidget.dart';
+import 'bodyWidget.dart';
+import 'navigationBarWidget.dart';
 
 abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
-  BaseNavigationWidget({this.title });
+  BaseNavigationWidget(this.chengState, this.route, {this.title});
   final String? title;
-  final _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   GetTopo? getTopo;
-  @override
+
+  ChengState chengState;
+  bool navigationsAdd = true;
+  final StreamController<ChengState> streamChengState  = StreamController<ChengState>();
+  final RouteList route ;
+
+  StateType get stateType => chengState.stateType;
+  set stateType (StateType x) => chengState.stateType = x;
+
+  @protected
+  @mustCallSuper
   void initState() {
+
+    navigationsAdd = false;
+    changeState(chengState);
+    navigationsAdd = true;
+
+
+    if(streamChengState.hasListener != true) {
+      streamChengState.stream.listen((value) {
+        changeState(value);
+      });
+    }
+
     getTopo = GetTopo(scrollController: _scrollController);
     scroll();
     super.initState();
   }
 
+  @protected
+  @mustCallSuper
+  void dispose() {
+    if(streamChengState.hasListener == true)
+      streamChengState.close();
+    super.dispose();
+  }
+
+  @protected
+  @mustCallSuper
+  void changeState(ChengState value){
+
+    // if(value.streamDialogHide) {
+    //   streamDialog.add(null);
+    // }
+
+    if(value.stateType != null && stateType != null && value.stateType == StateType.None) {
+      value.navigationsAdd = false;
+      value.getList = false;
+      value.stateType = stateType;
+    }
+
+    if(value.navigationsAdd == false)
+      navigationsAdd = false;
+    if (value.scrollJump && !_scrollController.positions.isEmpty)
+      _scrollController.jumpTo(0.0);
+
+    // if(navigationsAdd && stateType != value.stateType) {
+    //   AppPropertis.navigations.add(
+    //       new Navigation(route: route, chengState: value));
+    // }
+    else navigationsAdd = true;
+
+    stateType = value.stateType;
+  }
+
+  // build
   @override
   Widget build(BuildContext context) {
     return Directionality(textDirection: TextDirection.rtl,
         child: Stack(children: [
       Scaffold(
         backgroundColor: ObjectColor.baseBackground,
-        appBar:_appBar(context),
-        body: _body(context),
-        bottomNavigationBar:_navigationBar(context), // This trailing comma makes auto-formatting nicer for build methods.
+        appBar: AppBarWidget().build(context),
+        body: BodyWidget(
+          child: stateBuild(context),
+          scrollController: _scrollController,
+          getTopo: getTopo,
+        ),
+        bottomNavigationBar:NavigationBarWidget(), // This trailing comma makes auto-formatting nicer for build methods.
       ),
     ])
     );
   }
 
-  AppBar _appBar(BuildContext context) {
-    return AppBar(
-        backgroundColor: ObjectColor.base,
-        shadowColor:Colors.transparent,
-        centerTitle: false,
-        automaticallyImplyLeading: false,
-        titleSpacing: 0,
-        title:   Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Padding(padding: EdgeInsets.symmetric(horizontal: 5.0),child: Text('title??AppNavigator.routeTitle', style: Style.h4(color: white)),)
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () => MyApp.navigator.pop(),
-            icon: Icon(Icons.arrow_forward_ios),
-          ),
-        ]
-    );
-  }
-
-  Widget _body(BuildContext context) {
-    return Stack(
-      children: [
-        Scrollbar(
-          // isAlwaysShown: true,
-          controller: _scrollController, // <---- Here, the controller
-          child:RawScrollbar(
-            controller: _scrollController,
-            thumbColor:ObjectColor.shadowBackground(.6),
-            radius: Radius.circular(20),
-            thickness: 5,
-            child:
-            SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                controller: _scrollController, // <---- Same as the Scrollbar controller
-                child:
-                Center(
-                  child:
-                  Container(
-                      decoration: BoxDecoration(
-                        color: ObjectColor.baseBackground,
-                      ),
-                      child:stateBuild(context)
-                  ),
-                )
-            ),
-          ),
-        ),
-        getTopo!,
-      ],
-    );
-  }
 
   @protected
   Widget stateBuild(BuildContext context);
-
-  Widget _navigationBar(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.only(left : 14.0,bottom: 14.0,right: 14.0,top: 5.0),
-        decoration: BoxDecoration(
-          color: ObjectColor.base,
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child:
-        InkWell(
-            onTap: (){
-              MyApp.navigator.pop();
-            },
-            child:
-            Container(
-              height: 60,
-              child:Center(child: Text('بازگشت',style:Style.h4(color: white)),)
-              ,
-            )
-        )
-    );
-  }
 
   void scroll() {
     _scrollController.addListener(() {
@@ -123,13 +117,14 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
   }
 }
 
-
 class AboutPage extends StatefulWidget {
   @override
   _AboutPage createState() => _AboutPage();
 }
 
 class _AboutPage extends BaseNavigationWidget<AboutPage> {
+  _AboutPage() : super(ChengState(StateType.Main), RouteList.AboutPage);
+
   @override
   Widget stateBuild(BuildContext context) {
     return Center(

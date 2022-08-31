@@ -10,6 +10,9 @@ const Color bright = Color.fromRGBO(247, 248, 250, 1.0);
 const Color darkText = Color.fromRGBO(208, 208, 208, 1.0);
 const Color brightText = Color.fromRGBO(108 ,117, 125, 1.0);
 
+const Color darkLink = Color.fromRGBO(32, 206, 96, 1.0);
+const Color brightLink =  Color.fromRGBO(212, 190, 119, 1.0);
+
 const Color darkCard = Color.fromRGBO(69 ,90, 100,1);
 const Color darkCard2 = Color.fromRGBO(34, 46, 53,1);
 const Color brightCard = Color.fromRGBO(255,255,255,1);
@@ -37,6 +40,7 @@ class ObjectColor {
 
   static Color get base => _base();
   static Color get baseTextColor => _baseTextColor();
+  static Color get linkColor => _linkColor();
   static Color get baseBackground => _baseBackground();
   static Color get cardBackground => _cardBackground();
 
@@ -89,8 +93,14 @@ class ObjectColor {
       case NightType.Bright:
         return brightText;
     }
-
-    return Color.fromRGBO(0,0,0, 1.0);
+  }
+  static Color _linkColor() {
+    switch (nightType) {
+      case NightType.Dark:
+        return darkLink;
+      case NightType.Bright:
+        return brightLink;
+    }
   }
   static Color _baseBackground() {
     switch (nightType) {

@@ -20,7 +20,7 @@ class AppNavigator{
    void pop() {
     if(list.length > 0){
       var _context = navigatorKey.currentContext;
-    print('length ${list.length} $_context');
+
       Navigator.pop(_context!);
     list.remove(list[list.length - 1]);
     }
@@ -30,8 +30,6 @@ class AppNavigator{
     var _context = navigatorKey.currentContext;
     list.add(0);
     var v =getView(route);
-
-    print('uuuuuuuuu ${list.length} ${route.toString()} $_context');
 
     Navigator.push(
       _context!,
@@ -43,21 +41,18 @@ class AppNavigator{
       case RouteList.HomePage:
         _routeTitle = 'صفحه اصلی';
         return HomePage();
-        break;
+
       case RouteList.AboutPage:
         _routeTitle = 'درباره ما';
         return AboutPage();
-        break;
 
       case RouteList.LoginPage:
-        _routeTitle = 'رمز پویا';
+        _routeTitle = 'جستجو';
         return LoginPage();
-        break;
 
       default :
         _routeTitle = 'صفحه اصلی';
         return HomePage();
-        break;
     }
   }
 }
