@@ -38,7 +38,12 @@ abstract class BaseMenuWidget<T extends StatefulWidget> extends State<T> {
   @protected
   @mustCallSuper
   void close(){
-    setState(() =>MyApp.navigator.isMenu = false);
+    if( MyApp.events.streamClosePopupState.hasListener == true)
+      MyApp.events.streamClosePopupState.close();
+    if(MyApp.navigator.isMenu) {
+      MyApp.navigator.isMenu = false;
+      MyApp.navigator.setMenu(MenuList.hide);
+    }
   }
 
   @protected

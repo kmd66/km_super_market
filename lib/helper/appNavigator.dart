@@ -7,11 +7,7 @@ import '../pages/menus/settings.dart';
 import 'events.dart';
 
 class AppNavigator{
-  AppNavigator({
-    required this.menuCallback,
-  });
-
-  final void Function(Widget) menuCallback;
+  void Function(Widget)? menuCallback;
 
   List<int> list= [];
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -86,6 +82,6 @@ class AppNavigator{
       default:
         menuWidget = Container(height: 0,width: 0,);
     }
-    menuCallback(menuWidget);
+    menuCallback!(menuWidget);
   }
 }

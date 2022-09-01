@@ -39,9 +39,7 @@ class MyHttpOverrides extends HttpOverrides{
 class MyApp extends StatefulWidget {
   MyApp({super.key});
 
-  static AppNavigator navigator = AppNavigator(
-    menuCallback:(menuWidget)=> state.setState(()=>state.menu = menuWidget),
-  );
+  static AppNavigator navigator = AppNavigator();
   static AppPropertis propertis = AppPropertis();
   static Menus menus = Menus();
   static Events events =Events();
@@ -49,8 +47,15 @@ class MyApp extends StatefulWidget {
 
   static _MyApp state = new _MyApp();
   @override
-  _MyApp createState()=> MyApp.state = new _MyApp();
+  _MyApp createState(){
+    MyApp.state = new _MyApp();
+    navigator.menuCallback= (menuWidget){
+      state.setState(()=>state.menu = menuWidget);
+    };
+    return MyApp.state;
+  }
 }
+
 
 class _MyApp extends State<MyApp> {
 
