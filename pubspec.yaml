@@ -72,6 +72,8 @@ flutter:
 
   assets:
     - assets/
+    - assets/img/
+    - assets/img/profile_picture.jpg
     - assets/svg/
     - assets/svg/menu.svg
     - assets/svg/home.svg

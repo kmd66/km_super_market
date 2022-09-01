@@ -2,26 +2,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../core/model/keyValue.dart';
 import '../core/model/message.dart' as msgModel;
+import '../main.dart';
 import 'events.dart';
 
 class Tools {
   static void showError(dynamic err){
     try{
       if(err['Message'] != null)
-        streamMessage.add(msgModel.Message.danger(respite: 3,msg: err['Message']));
+        MyApp.events.streamMessage.add(msgModel.Message.danger(respite: 3,msg: err['Message']));
       else if(err['message'] != null)
-        streamMessage.add(msgModel.Message.danger(respite: 3,msg: err['message']));
+        MyApp.events.streamMessage.add(msgModel.Message.danger(respite: 3,msg: err['message']));
       else
-        streamMessage.add(msgModel.Message.danger(respite: 3,msg: 'خطای ناشناخته'));
+        MyApp.events.streamMessage.add(msgModel.Message.danger(respite: 3,msg: 'خطای ناشناخته'));
     }
     catch(e){
-      streamMessage.add(msgModel.Message.danger(respite: 3,msg: 'خطای ناشناخته'));
+      MyApp.events.streamMessage.add(msgModel.Message.danger(respite: 3,msg: 'خطای ناشناخته'));
     }
   }
   //
   static void launchURL(String url) async {
     if (!await launchUrl(Uri.parse(url)))
-      streamMessage.add(msgModel.Message.danger(msg: 'اتصال اینترنت خود را برسی کنید'
+      MyApp.events.streamMessage.add(msgModel.Message.danger(msg: 'اتصال اینترنت خود را برسی کنید'
           '\n Could not launch $url',));
   }
 

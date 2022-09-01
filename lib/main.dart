@@ -10,8 +10,7 @@ import 'core/model/enums.dart';
 import 'core/model/navigation.dart';
 import 'helper/appNavigator.dart';
 import 'helper/appPropertis.dart';
-import 'helper/objectColor.dart';
-import 'helper/textStyle.dart';
+import 'helper/events.dart';
 
 void main() {
   HttpOverrides.global = new MyHttpOverrides();
@@ -37,16 +36,30 @@ class MyHttpOverrides extends HttpOverrides{
 
 
 class MyApp extends StatefulWidget {
-  static  AppNavigator navigator = AppNavigator();
-  static  Menus menus = Menus();
-  static  AppPropertis propertis = AppPropertis();
+  MyApp({super.key});
 
-  const MyApp({super.key});
+  static AppNavigator navigator = AppNavigator(
+    menuCallback:(menuWidget)=> state.setState(()=>state.menu = menuWidget),
+  );
+  static AppPropertis propertis = AppPropertis();
+  static Menus menus = Menus();
+  static Events events =Events();
+
+  static _MyApp state = new _MyApp();
   @override
-  State<MyApp> createState() => _MyApp();
+  _MyApp createState()=> MyApp.state = new _MyApp();
 }
 
 class _MyApp extends State<MyApp> {
+
+  Widget menu = Container(height: 0, width: 0);
+
+  @override
+  void setState(fn) {
+    if(mounted) {
+      super.setState(fn);
+    }
+  }
 
   @override
   void initState() {
@@ -55,9 +68,7 @@ class _MyApp extends State<MyApp> {
   }
 
   void initialization() async {
-    print('ready in 3...');
     await Future.delayed(const Duration(seconds: 1));
-    print('go!');
     FlutterNativeSplash.remove();
   }
   // This widget is the root of your application.
@@ -78,18 +89,7 @@ class _MyApp extends State<MyApp> {
               MyApp.navigator.pop();
               return Future.value(false);
             }),
-        Container(height: 0, width: 0)
-        // Align(
-        //   alignment: Alignment.bottomCenter,
-        //   child: Container(height: 100, width: 100,color: Colors.red,
-        //     child: ElevatedButton(
-        //       onPressed: () {
-        //         MyApp.navigator.pop();
-        //       },
-        //       child: const Text('Go back!'),
-        //     )
-        //     ,),
-        // )
+        menu
       ],),
     );
   }
@@ -134,7 +134,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPage extends BaseNavigationWidget<LoginPage> {
-  _LoginPage() : super(ChengState(StateType.Main), RouteList.AboutPage);
+  _LoginPage() : super(ChengState(StateType.Main), RouteList.LoginPage);
 
   @override
   Widget stateBuild(BuildContext context) {

@@ -12,7 +12,7 @@ class MenuItemModel {
   final bool? reghtMenu;
   final String? imgIcon;
   final String? svgIcon;
-  final int? index;
+  final int index;
 
   MenuItemModel(this.type, {this.child, this.title, this.route, this.menu, this.icon,  this.imgIcon, this.svgIcon, this.reghtMenu = true, this.index = 0});
 }

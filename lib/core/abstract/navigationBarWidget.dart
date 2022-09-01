@@ -87,8 +87,8 @@ class _NavigationBar extends State<NavigationBarWidget>{
             BottomNavigationBarButton(
                 btnIcon: x.svgIcon!,
                 title: x.title!,
-                onPress: () {
-
+                onPress: (){
+                  x.route !=null ? MyApp.navigator.push(x.route!):MyApp.navigator.setMenu(x.menu!);
                 }
             )
         )
