@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:prj/pages/menus/menus.dart';
+import 'core/Widget/textInput/textInputBorder.dart';
 import 'core/abstract/baseNavigationWidget.dart';
 import 'core/model/enums.dart';
 import 'core/model/navigation.dart';
@@ -94,50 +95,37 @@ class _MyApp extends State<MyApp> {
   }
 }
 
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
 
-          backgroundColor: ObjectColor.base,
-          shadowColor:Colors.transparent,
-          centerTitle: false,
-          automaticallyImplyLeading: false,
-          titleSpacing: 0,
-          title:   Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Padding(padding: EdgeInsets.symmetric(horizontal: 5.0),child: Text('First Route', style: Style.h4(color: white)),)
-            ],
-          ),
-          actions: [
-            IconButton(
-              onPressed: () => MyApp.navigator.pop(),
-              icon: Icon(Icons.arrow_forward_ios),
-            ),
-          ]
+class HomePage extends StatefulWidget {
+  @override
+  _HomePage createState() => _HomePage();
+}
+
+class _HomePage extends BaseNavigationWidget<HomePage> {
+  _HomePage() : super(ChengState(StateType.Main), RouteList.HomePage);
+  String mobile='';
+  @override
+  Widget stateBuild(BuildContext context) {
+    return Column(children: [
+      ElevatedButton(
+        child: const Text('Open route'),
+        onPressed: () {
+          MyApp.navigator.push(RouteList.AboutPage);
+        },
       ),
-      body: Center(
-          child:Column(children: [
-            ElevatedButton(
-              child: const Text('Open route'),
-              onPressed: () {
-                MyApp.navigator.push(RouteList.AboutPage);
-              },
-            ),
-            ElevatedButton(
-              onPressed: () {
-                MyApp.navigator.pop();
-              },
-              child: const Text('Go back!'),
-            )
-          ])
+      ElevatedButton(
+        onPressed: () {
+          MyApp.navigator.pop();
+        },
+        child: const Text('Go back!'),
       ),
-    );
+      new TextInputBorder('شماره همراه',maxLength: 11, textInputType: TextInputType.number,hintLabel:'شماره همراه خود را وارد کنید',modelLabel:'شماره همراه', model: mobile,onChange: (x)=> mobile = x,),
+      new TextInputBorder('شماره همراه',enabled: false, textInputType: TextInputType.number,hintLabel:'شماره همراه خود را وارد کنید',modelLabel:'شماره همراه', model: 'kk'),
+
+    ]);
 
   }
+
 }
 
 class LoginPage extends StatefulWidget {

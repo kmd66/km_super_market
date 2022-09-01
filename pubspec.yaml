@@ -55,6 +55,16 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
 
+  fonts:
+    - family: IRANSansX
+      fonts:
+        - asset: assets/fonts/IRANSansX-Bold.ttf
+        - asset: assets/fonts/IRANSansX-Light.ttf
+        - asset: assets/fonts/IRANSansX-Medium.ttf
+        - asset: assets/fonts/IRANSansX-UltraLight.ttf
+          style: italic
+          weight: 700
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -65,6 +75,7 @@ flutter:
     - assets/svg/
     - assets/svg/menu.svg
     - assets/svg/home.svg
+    - assets/svg/bag.svg
     - assets/svg/search.svg
 
 

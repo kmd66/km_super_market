@@ -30,9 +30,8 @@ class BodyWidget extends StatelessWidget {
                 Center(
                   child:
                   Container(
-                      decoration: BoxDecoration(
-                        color: ObjectColor.baseBackground,
-                      ),
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20) ,
+                      color: ObjectColor.baseBackground,
                       child:child
                   ),
                 )

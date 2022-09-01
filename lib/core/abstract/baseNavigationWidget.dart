@@ -1,16 +1,10 @@
-
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../helper/AppNavigator.dart';
 import '../../helper/objectColor.dart';
-import '../../helper/textStyle.dart';
 import '../../main.dart';
-import '../Widget/bottomNavigationBarButton.dart';
 import '../Widget/getTopo.dart';
-import '../Widget/showObj.dart';
 import '../model/enums.dart';
 import '../model/navigation.dart';
 import 'appBarWidget.dart';
@@ -21,7 +15,10 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
   BaseNavigationWidget(this.chengState, this.route, {this.title});
   final String? title;
   final ScrollController _scrollController = ScrollController();
-  GetTopo? getTopo;
+
+  late GetTopo? getTopo;
+  final AppBarWidget appBar = AppBarWidget();
+  late NavigationBarWidget navigationBarWidget;
 
   ChengState chengState;
   bool navigationsAdd = true;
@@ -39,14 +36,14 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
     changeState(chengState);
     navigationsAdd = true;
 
-
     if(streamChengState.hasListener != true) {
       streamChengState.stream.listen((value) {
         changeState(value);
       });
     }
-
+    navigationBarWidget =  NavigationBarWidget(scrollController: _scrollController);
     getTopo = GetTopo(scrollController: _scrollController);
+
     scroll();
     super.initState();
   }
@@ -94,13 +91,13 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
         child: Stack(children: [
       Scaffold(
         backgroundColor: ObjectColor.baseBackground,
-        appBar: AppBarWidget().build(context),
+        appBar: appBar.build(context),
         body: BodyWidget(
           child: stateBuild(context),
           scrollController: _scrollController,
           getTopo: getTopo,
         ),
-        bottomNavigationBar:NavigationBarWidget(), // This trailing comma makes auto-formatting nicer for build methods.
+        bottomNavigationBar:navigationBarWidget, // This trailing comma makes auto-formatting nicer for build methods.
       ),
     ])
     );

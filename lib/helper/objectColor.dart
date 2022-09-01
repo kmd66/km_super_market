@@ -5,12 +5,12 @@ const Color white = Color.fromRGBO(255 ,255, 255, 1.0);
 const Color black = Color.fromRGBO(0,0,0, 1.0);
 
 const Color dark = Color.fromRGBO(55 ,71, 79, 1);
-const Color bright = Color.fromRGBO(247, 248, 250, 1.0);
+const Color bright = Color.fromRGBO(229, 229, 229, 1.0);
 
 const Color darkText = Color.fromRGBO(208, 208, 208, 1.0);
-const Color brightText = Color.fromRGBO(108 ,117, 125, 1.0);
+const Color brightText = Color.fromRGBO(89, 90, 93, 1.0);
 
-const Color darkLink = Color.fromRGBO(32, 206, 96, 1.0);
+const Color darkLink = Color.fromRGBO(119, 212, 141, 1.0);
 const Color brightLink =  Color.fromRGBO(212, 190, 119, 1.0);
 
 const Color darkCard = Color.fromRGBO(69 ,90, 100,1);
@@ -29,14 +29,15 @@ const Color lightGreen = Color.fromRGBO(174, 213, 129, 1);
 const Color violet = Color.fromRGBO(171, 71, 189, 1);
 const Color purole = Color.fromRGBO(126 ,87 ,194, 1);
 const Color yellow = Color.fromRGBO(255 ,179 ,0, 1);
-const Color indigo = Color.fromRGBO(63 ,81 ,181, 1);
+const Color indigo = Color.fromRGBO(21, 94, 117, 1.0);//Color.fromRGBO(63 ,81 ,181, 1);
 const Color blueGrey = Color.fromRGBO(120 ,144 ,156, 1);
 const Color brown = Color.fromRGBO(141 ,110 ,99, 1);
 const Color cyan = Color.fromRGBO(0, 188, 212, 1.0);
 
 class ObjectColor {
-  static ColerType colerType = ColerType.Blue;
-  static NightType nightType = NightType.Dark;
+  static ColerType colerType = ColerType.Indigo;
+  // static NightType nightType = NightType.Dark;
+  static NightType nightType = NightType.Bright;
 
   static Color get base => _base();
   static Color get baseTextColor => _baseTextColor();
@@ -50,7 +51,6 @@ class ObjectColor {
   static Color get baseBorder2 => _baseBorder2();
   static Color get pupUpMenuBackground => _pupUpMenuBackground();
   static Color get rightMenuBackground => nightType == NightType.Bright ?brightCard2:darkCard2;
-
 
   static Color _base() {
     switch (colerType) {
@@ -141,9 +141,9 @@ class ObjectColor {
   static Color _baseBorder () {
     switch (nightType) {
       case NightType.Dark:
-        return Color.fromRGBO(45, 61, 69, 1.0);
+        return Color.fromRGBO(91, 114, 128, 1.0);
       case NightType.Bright:
-        return Color.fromRGBO(255, 255, 255, 1.0);
+        return Color.fromRGBO(202, 203, 208, 1.0);
     }
 
     return Color.fromRGBO(0,0,0, 1.0);
@@ -201,8 +201,15 @@ class ObjectColor {
       case ColerType.Cyan:
         return Color.fromRGBO(128, 221, 223, 1.0);
     }
-
     return Color.fromRGBO(0,0,0, 1.0);
+  }
 
+  static Color textInput_Background(bool b) {
+    switch (nightType) {
+      case NightType.Dark:
+        return b? darkCard : darkCard2;
+      case NightType.Bright:
+        return b? brightCard : brightCard2;
+    }
   }
 }
