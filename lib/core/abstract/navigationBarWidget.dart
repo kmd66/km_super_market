@@ -67,7 +67,7 @@ class _NavigationBar extends State<NavigationBarWidget>{
         constraints: BoxConstraints(minWidth: 320, maxWidth: MyApp.propertis.maxWidth, ),
         margin: const EdgeInsets.only(left : 14.0,bottom: 14.0,right: 14.0,top: 5.0),
         decoration: BoxDecoration(
-          color: ObjectColor.base,
+          color: MyApp.color.base,
           borderRadius: BorderRadius.circular(10.0),
         ),
         child:Row(

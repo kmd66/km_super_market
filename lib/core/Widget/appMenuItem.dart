@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../helper/objectColor.dart';
 import '../../helper/textStyle.dart';
+import '../../main.dart';
 
 //ignore: must_be_immutable
 class AppMenuItem extends StatefulWidget {
@@ -51,7 +52,7 @@ class _MenuItem extends State<AppMenuItem> {
               Container(
                   padding:  const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color:widget._isHovered == true ?ObjectColor.shadowBackground(.1):Colors.transparent,
+                    color:widget._isHovered == true ?MyApp.color.shadowBackground(.1):Colors.transparent,
                   ),
                   child:Column(children: [
                     Row(
@@ -61,7 +62,7 @@ class _MenuItem extends State<AppMenuItem> {
                           width: 36,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: ObjectColor.shadowBackground(.1)
+                              color: MyApp.color.shadowBackground(.1)
                           ),
                           child: Center(
                             child:_icon(context),
@@ -77,7 +78,7 @@ class _MenuItem extends State<AppMenuItem> {
               ),
               Container(
                 height: 1,
-                decoration: BoxDecoration(color:ObjectColor.baseBorder,),
+                decoration: BoxDecoration(color:MyApp.color.baseBorder,),
               ),
             ],)
         ),) ;
@@ -88,12 +89,12 @@ class _MenuItem extends State<AppMenuItem> {
     SvgPicture.asset(widget.svgIcon! ,
       height: 22,
       width: 22,
-      color: ObjectColor.base,
+      color: MyApp.color.base,
     ):
     Icon(
       widget.icon,
       size:22,
-      color: ObjectColor.base,
+      color: MyApp.color.base,
     );
   }
 }

@@ -11,6 +11,7 @@ import 'core/model/navigation.dart';
 import 'helper/appNavigator.dart';
 import 'helper/appPropertis.dart';
 import 'helper/events.dart';
+import 'helper/objectColor.dart';
 
 void main() {
   HttpOverrides.global = new MyHttpOverrides();
@@ -44,6 +45,7 @@ class MyApp extends StatefulWidget {
   static AppPropertis propertis = AppPropertis();
   static Menus menus = Menus();
   static Events events =Events();
+  static ObjectColor color = ObjectColor();
 
   static _MyApp state = new _MyApp();
   @override

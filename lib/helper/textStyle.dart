@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 import 'objectColor.dart';
 
 class Style {
@@ -15,7 +16,7 @@ class Style {
         fontWeight: fontWeight ,
         fontSize:36,
         fontFamily: 'IRANSansX',
-        color: color != null ? color: ObjectColor.baseTextColor
+        color: color != null ? color: MyApp.color.baseTextColor
     );
   }
   static TextStyle h2({FontWeight fontWeight = FontWeight.normal, Color? color, double? height}){
@@ -24,7 +25,7 @@ class Style {
         fontWeight: fontWeight ,
         fontSize:24,
         fontFamily: 'IRANSansX',
-        color: color != null ? color: ObjectColor.baseTextColor
+        color: color != null ? color: MyApp.color.baseTextColor
     );
   }
   static TextStyle h3({FontWeight fontWeight = FontWeight.normal, Color? color, double? height}){
@@ -33,7 +34,7 @@ class Style {
         fontWeight: fontWeight ,
         fontSize:18.5,
         fontFamily: 'IRANSansX',
-        color: color != null ? color: ObjectColor.baseTextColor
+        color: color != null ? color: MyApp.color.baseTextColor
     );
   }
   static TextStyle h4({FontWeight fontWeight = FontWeight.normal, Color? color, double? height}){
@@ -42,7 +43,7 @@ class Style {
         fontWeight: fontWeight ,
         fontSize:16,
         fontFamily: 'IRANSansX',
-        color: color != null ? color: ObjectColor.baseTextColor
+        color: color != null ? color: MyApp.color.baseTextColor
     );
   }
   static TextStyle h5({FontWeight fontWeight = FontWeight.normal, Color? color, double? height}){
@@ -51,7 +52,7 @@ class Style {
         fontWeight: fontWeight ,
         fontSize:13,
         fontFamily: 'IRANSansX',
-        color: color != null ? color: ObjectColor.baseTextColor
+        color: color != null ? color: MyApp.color.baseTextColor
     );
   }
   static TextStyle h6({FontWeight fontWeight = FontWeight.normal, Color? color, double? height}){
@@ -60,7 +61,7 @@ class Style {
         fontWeight: fontWeight ,
         fontSize:8,
         fontFamily: 'IRANSansX',
-        color: color != null ? color: ObjectColor.baseTextColor
+        color: color != null ? color: MyApp.color.baseTextColor
     );
   }
 
@@ -70,7 +71,7 @@ class Style {
         fontWeight: fontWeight ,
         fontSize:10,
         fontFamily: 'IRANSansX',
-        color: color != null ? color: ObjectColor.baseTextColor
+        color: color != null ? color: MyApp.color.baseTextColor
     );
   }
 
@@ -80,7 +81,7 @@ class Style {
         fontWeight: fontWeight ,
         fontSize:12,
         fontFamily: fontFamily,
-        color: color != null ? color: ObjectColor.baseTextColor
+        color: color != null ? color: MyApp.color.baseTextColor
     );
   }
 

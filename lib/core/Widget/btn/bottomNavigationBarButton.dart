@@ -42,7 +42,7 @@ class BottomNavigationBarButton extends StatelessWidget {
         width: 66,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(bottomLeft: Radius.circular(36), bottomRight: Radius.circular(36)),
-          color: ObjectColor.baseBackground,
+          color: MyApp.color.baseBackground,
         ),
       ),
       Container(
@@ -51,8 +51,8 @@ class BottomNavigationBarButton extends StatelessWidget {
         width: 60,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: ObjectColor.linkColor,
-          // border: Border.all(width: 5, color:ObjectColor.baseBackground)
+          color: MyApp.color.linkColor,
+          // border: Border.all(width: 5, color:MyApp.color.baseBackground)
         ),
         child:
         Center(
@@ -63,7 +63,7 @@ class BottomNavigationBarButton extends StatelessWidget {
             width: 27,
           ):
           Icon(Icons.home,
-            color: ObjectColor.baseIcon,
+            color: MyApp.color.baseIcon,
           ),
         ),
 
@@ -95,7 +95,7 @@ class BottomNavigationBarButton extends StatelessWidget {
                       width: 27,
                     ):
                     Icon(Icons.home,
-                      color: ObjectColor.baseIcon,
+                      color: MyApp.color.baseIcon,
                     ),
                   ) ,
                   Padding(

@@ -76,15 +76,13 @@ enum AppMenuType {
 extension EnumTransform on List {
   String? string<T>(T value) {
     if (value == null || (isEmpty)) return null;
-    var occurence = singleWhere(
-            (enumItem) => enumItem.toString() == value.toString(),
-        orElse: () => null);
+    var occurence = this.where((x) => x ==value).first;
     if (occurence == null) return null;
     return occurence.toString().split('.').last;
   }
 
   T? enumFromString<T>(String value) {
-    return firstWhere((type) => type.toString().split('.').last == value,
-        orElse: () => null);
+    var t  = this.where((x) => x.toString().split('.').last ==value);
+    return t.length == 0 ? null : t.first;
   }
 }

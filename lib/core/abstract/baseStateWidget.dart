@@ -25,7 +25,7 @@ abstract class BaseStateWidget<T extends StatefulWidget> extends State<T> {
     return Directionality(textDirection: TextDirection.rtl,
         child: Stack(children: [
       Scaffold(
-        backgroundColor: ObjectColor.baseBackground,
+        backgroundColor: MyApp.color.baseBackground,
         appBar:_appBar(context),
         body: _body(context),
         bottomNavigationBar:_navigationBar(context), // This trailing comma makes auto-formatting nicer for build methods.
@@ -36,7 +36,7 @@ abstract class BaseStateWidget<T extends StatefulWidget> extends State<T> {
 
   AppBar _appBar(BuildContext context) {
     return AppBar(
-        backgroundColor: ObjectColor.base,
+        backgroundColor: MyApp.color.base,
         shadowColor:Colors.transparent,
         centerTitle: false,
         automaticallyImplyLeading: false,
@@ -65,7 +65,7 @@ abstract class BaseStateWidget<T extends StatefulWidget> extends State<T> {
           controller: _scrollController, // <---- Here, the controller
           child:RawScrollbar(
             controller: _scrollController,
-            thumbColor:ObjectColor.shadowBackground(.6),
+            thumbColor:MyApp.color.shadowBackground(.6),
             radius: Radius.circular(20),
             thickness: 5,
             child:
@@ -77,7 +77,7 @@ abstract class BaseStateWidget<T extends StatefulWidget> extends State<T> {
                   child:
                   Container(
                       decoration: BoxDecoration(
-                        color: ObjectColor.baseBackground,
+                        color: MyApp.color.baseBackground,
                       ),
                       child:stateBuild(context)
                   ),
@@ -97,7 +97,7 @@ abstract class BaseStateWidget<T extends StatefulWidget> extends State<T> {
     return Container(
         margin: const EdgeInsets.only(left : 14.0,bottom: 14.0,right: 14.0,top: 5.0),
         decoration: BoxDecoration(
-          color: ObjectColor.base,
+          color: MyApp.color.base,
           borderRadius: BorderRadius.circular(10.0),
         ),
         child:

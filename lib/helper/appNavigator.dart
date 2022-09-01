@@ -3,6 +3,7 @@ import '../core/abstract/baseNavigationWidget.dart';
 import '../core/model/enums.dart';
 import '../main.dart';
 import '../pages/menus/main.dart';
+import '../pages/menus/settings.dart';
 import 'events.dart';
 
 class AppNavigator{
@@ -76,8 +77,9 @@ class AppNavigator{
     if(menuList != MenuList.hide)
       isMenu = true;
     switch (menuList) {
-      // case MenuList.Setting:
-      //   return SettingsWidget();
+      case MenuList.Setting:
+        menuWidget = SettingsWidget();
+        break;
       case MenuList.Main:
         menuWidget = MainMenuWidget();
         break;

@@ -90,7 +90,7 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
     return Directionality(textDirection: TextDirection.rtl,
         child: Stack(children: [
       Scaffold(
-        backgroundColor: ObjectColor.baseBackground,
+        backgroundColor: MyApp.color.baseBackground,
         appBar: appBar.build(context),
         body: BodyWidget(
           child: stateBuild(context),

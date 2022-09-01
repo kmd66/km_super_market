@@ -62,10 +62,10 @@ abstract class BaseMenuWidget<T extends StatefulWidget> extends State<T> {
                 ),
                 child:
                 Scaffold(
-                    backgroundColor: ObjectColor.baseBackground,
+                    backgroundColor: MyApp.color.baseBackground,
                     appBar:AppBar(
                       centerTitle: true,
-                      backgroundColor: ObjectColor.base,
+                      backgroundColor: MyApp.color.base,
                       shadowColor:Colors.transparent,
                       title: Text(appBarTitle),
                     ),
@@ -84,9 +84,9 @@ abstract class BaseMenuWidget<T extends StatefulWidget> extends State<T> {
                       FloatingActionButton(
                         child: Icon(
                           Icons.close,
-                          color: ObjectColor.baseIcon,
+                          color: MyApp.color.baseIcon,
                         ),
-                        backgroundColor: ObjectColor.base,
+                        backgroundColor: MyApp.color.base,
                         onPressed:()=>close(),
                       ),
                     )

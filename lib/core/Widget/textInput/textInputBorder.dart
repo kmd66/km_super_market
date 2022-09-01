@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:prj/helper/objectColor.dart';
 import '../../../helper/textStyle.dart';
 import '../../../helper/tools.dart';
+import '../../../main.dart';
 
 class TextInputBorder extends StatelessWidget {
   TextInputBorder(this.label, {
@@ -46,9 +47,9 @@ class TextInputBorder extends StatelessWidget {
                 :Container(width: 0,height: 0,),
             PhysicalModel(
               borderRadius: BorderRadius.circular(10),
-              color: ObjectColor.baseBorder,
+              color: MyApp.color.baseBorder,
               elevation:10.0,
-              shadowColor: ObjectColor.textInput_Background(false),//dark,
+              shadowColor: MyApp.color.textInput_Background(false),//dark,
               child:
               Directionality(
                 textDirection: textInputType == TextInputType.number? TextDirection.ltr : textDirection,
@@ -67,26 +68,26 @@ class TextInputBorder extends StatelessWidget {
                   ],
                   style: TextStyle(
                       fontFamily: 'IRANSansX',
-                      color: ObjectColor.baseTextColor),
+                      color: MyApp.color.baseTextColor),
                   decoration: InputDecoration(
                     counterText: "",
                     focusColor: Colors.amber,
                     focusedBorder:OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(color: ObjectColor.base, width: 2.0),
+                      borderSide: BorderSide(color: MyApp.color.base, width: 2.0),
                     ),
                     enabledBorder:  OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide:  BorderSide(color: ObjectColor.baseBorder, width: 2.0),
+                      borderSide:  BorderSide(color: MyApp.color.baseBorder, width: 2.0),
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       borderSide: BorderSide(color: Colors.red, width: 2.0),
                     )
                     ,filled: true,
-                    fillColor: ObjectColor.textInput_Background(enabled),
+                    fillColor: MyApp.color.textInput_Background(enabled),
                     hintText: hintLabel != null ? hintLabel : '',
-                    hintStyle: Style.h5(color: ObjectColor.baseBorder),
+                    hintStyle: Style.h5(color: MyApp.color.baseBorder),
                   ),
                 ),
               ),

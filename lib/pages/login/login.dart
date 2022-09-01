@@ -52,7 +52,7 @@
 //           width:  MediaQuery.of(context).size.width ,
 //           height: MediaQuery.of(context).size.height ,
 //           decoration: BoxDecoration(
-//             color: ObjectColor.baseBackground,
+//             color: MyApp.color.baseBackground,
 //           ),
 //           child:view()
 //

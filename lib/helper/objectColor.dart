@@ -35,24 +35,24 @@ const Color brown = Color.fromRGBO(141 ,110 ,99, 1);
 const Color cyan = Color.fromRGBO(0, 188, 212, 1.0);
 
 class ObjectColor {
-  static ColerType colerType = ColerType.Indigo;
-  // static NightType nightType = NightType.Dark;
-  static NightType nightType = NightType.Bright;
+  ColerType colerType = ColerType.Indigo;
+  // NightType nightType = NightType.Dark;
+  NightType nightType = NightType.Bright;
 
-  static Color get base => _base();
-  static Color get baseTextColor => _baseTextColor();
-  static Color get linkColor => _linkColor();
-  static Color get baseBackground => _baseBackground();
-  static Color get cardBackground => _cardBackground();
+  Color get base => _base();
+  Color get baseTextColor => _baseTextColor();
+  Color get linkColor => _linkColor();
+  Color get baseBackground => _baseBackground();
+  Color get cardBackground => _cardBackground();
 
-  static Color get baseIcon => _baseIcon();
-  static Color get baseBorderButton => _baseBorderButton();
-  static Color get baseBorder => _baseBorder();
-  static Color get baseBorder2 => _baseBorder2();
-  static Color get pupUpMenuBackground => _pupUpMenuBackground();
-  static Color get rightMenuBackground => nightType == NightType.Bright ?brightCard2:darkCard2;
+  Color get baseIcon => _baseIcon();
+  Color get baseBorderButton => _baseBorderButton();
+  Color get baseBorder => _baseBorder();
+  Color get baseBorder2 => _baseBorder2();
+  Color get pupUpMenuBackground => _pupUpMenuBackground();
+  Color get rightMenuBackground => nightType == NightType.Bright ?brightCard2:darkCard2;
 
-  static Color _base() {
+  Color _base() {
     switch (colerType) {
       case ColerType.Red:
         return red;
@@ -86,7 +86,7 @@ class ObjectColor {
 
     return black;
   }
-  static Color _baseTextColor() {
+  Color _baseTextColor() {
     switch (nightType) {
       case NightType.Dark:
         return darkText;
@@ -94,7 +94,7 @@ class ObjectColor {
         return brightText;
     }
   }
-  static Color _linkColor() {
+  Color _linkColor() {
     switch (nightType) {
       case NightType.Dark:
         return darkLink;
@@ -102,7 +102,7 @@ class ObjectColor {
         return brightLink;
     }
   }
-  static Color _baseBackground() {
+  Color _baseBackground() {
     switch (nightType) {
       case NightType.Dark:
         return dark;
@@ -112,7 +112,7 @@ class ObjectColor {
 
     return Color.fromRGBO(0,0,0, 1.0);
   }
-  static Color _cardBackground() {
+  Color _cardBackground() {
     switch (nightType) {
       case NightType.Dark:
         return darkCard;
@@ -122,13 +122,13 @@ class ObjectColor {
 
     return Color.fromRGBO(0,0,0, 1.0);
   }
-  static Color shadowBackground(double opacity ) {
+  Color shadowBackground(double opacity ) {
     return Color.fromRGBO(base.red,base.green,base.blue,opacity);
   }
-  static Color opacity(Color color, double opacity ) {
+  Color opacity(Color color, double opacity ) {
     return Color.fromRGBO(color.red,color.green,color.blue,opacity);
   }
-  static Color _baseIcon() {
+  Color _baseIcon() {
     switch (nightType) {
       case NightType.Dark:
         return Color.fromRGBO(210, 215, 217, 1.0);
@@ -138,7 +138,7 @@ class ObjectColor {
 
     return Color.fromRGBO(0,0,0, 1.0);
   }
-  static Color _baseBorder () {
+  Color _baseBorder () {
     switch (nightType) {
       case NightType.Dark:
         return Color.fromRGBO(91, 114, 128, 1.0);
@@ -149,7 +149,7 @@ class ObjectColor {
     return Color.fromRGBO(0,0,0, 1.0);
   }
 
-  static Color _baseBorder2 () {
+  Color _baseBorder2 () {
     switch (nightType) {
       case NightType.Dark:
         return Color.fromRGBO(50, 66, 74, 1.0);
@@ -159,7 +159,7 @@ class ObjectColor {
 
     return Color.fromRGBO(0,0,0, 1.0);
   }
-  static Color _pupUpMenuBackground () {
+  Color _pupUpMenuBackground () {
     switch (nightType) {
       case NightType.Dark:
         return Color.fromRGBO(22, 27, 28, 1.0);
@@ -170,7 +170,7 @@ class ObjectColor {
     return Color.fromRGBO(0,0,0, 1.0);
   }
 
-  static Color _baseBorderButton() {
+  Color _baseBorderButton() {
     switch (colerType) {
       case ColerType.Red:
         return Color.fromRGBO(229, 154, 153, 1.0);
@@ -204,7 +204,7 @@ class ObjectColor {
     return Color.fromRGBO(0,0,0, 1.0);
   }
 
-  static Color textInput_Background(bool b) {
+  Color textInput_Background(bool b) {
     switch (nightType) {
       case NightType.Dark:
         return b? darkCard : darkCard2;

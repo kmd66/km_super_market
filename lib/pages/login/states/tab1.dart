@@ -15,7 +15,7 @@
 //                     height: 325,
 //                     decoration: BoxDecoration(
 //                         borderRadius: BorderRadius.circular(12),
-//                         color: ObjectColor.baseBorder
+//                         color: MyApp.color.baseBorder
 //                     ),
 //                   ),
 //                   Column(children: [

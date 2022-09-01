@@ -19,7 +19,6 @@ class _MainWidgetWidget extends BaseMenuWidget<MainMenuWidget> {
   final double size = 100;
   final double margin = 12;
 
-
   void itemPresseRoute (RouteList route) {
     close();
     MyApp.navigator.push(route);
@@ -34,7 +33,7 @@ class _MainWidgetWidget extends BaseMenuWidget<MainMenuWidget> {
             height:80,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color: ObjectColor.base,
+              color: MyApp.color.base,
             )
         ),
         Center(child:
@@ -95,6 +94,5 @@ class _MainWidgetWidget extends BaseMenuWidget<MainMenuWidget> {
         fit: BoxFit.fill,
       );
   }
-
 
 }

@@ -19,7 +19,7 @@ class BodyWidget extends StatelessWidget {
           controller: scrollController, // <---- Here, the controller
           child:RawScrollbar(
             controller: scrollController,
-            thumbColor:ObjectColor.shadowBackground(.6),
+            thumbColor:MyApp.color.shadowBackground(.6),
             radius: Radius.circular(20),
             thickness: 5,
             child:
@@ -31,7 +31,7 @@ class BodyWidget extends StatelessWidget {
                   child:
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20) ,
-                      color: ObjectColor.baseBackground,
+                      color: MyApp.color.baseBackground,
                       child:child
                   ),
                 )

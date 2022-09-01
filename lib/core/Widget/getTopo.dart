@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prj/helper/objectColor.dart';
 
+import '../../main.dart';
+
 class GetTopo extends StatefulWidget {
   GetTopo({Key? key, this.scrollController}) :  super(key: key);
   final ScrollController? scrollController;
@@ -50,7 +52,7 @@ class _GetTopo extends State<GetTopo>{
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.all(20),
           shape: CircleBorder(),
-          primary: ObjectColor.base, // <-- Button color
+          primary: MyApp.color.base, // <-- Button color
           onPrimary: Colors.red, // <-- Splash color
         ),
       ):Container(width: 0,height: 0,),
