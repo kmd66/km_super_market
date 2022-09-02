@@ -70,6 +70,7 @@ class _MyApp extends State<MyApp> {
     await getData();
     await Future.delayed(const Duration(seconds: 1));
     FlutterNativeSplash.remove();
+    setState(() {});
   }
   // This widget is the root of your application.
   @override
@@ -95,8 +96,9 @@ class _MyApp extends State<MyApp> {
     );
   }
   Widget view(BuildContext context) {
-    if(_getData)
-      return MyApp.navigator.getView(RouteList.HomePage);
+    if(_getData) {
+      return MyApp.navigator.getView(RouteList.HomePage,GlobalKey<NavigatorState>());
+    }
     else return Container(height: 0, width: 0);
   }
 }

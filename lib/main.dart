@@ -15,12 +15,19 @@ void main() {
   runApp(MyApp());
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends BaseStatefulWidget<_HomePage> {
+  HomePage(GlobalKey<NavigatorState> key) : super(key);
+
+
+
   @override
-  _HomePage createState() => _HomePage();
+  _HomePage createState(){
+    state = _HomePage();
+    return state!;
+  }
 }
 
-class _HomePage extends BaseNavigationWidget<HomePage> {
+class _HomePage extends BaseNavigationWidget {
   _HomePage() : super(ChengState(StateType.Main), RouteList.HomePage);
   String mobile='';
   @override
@@ -47,12 +54,17 @@ class _HomePage extends BaseNavigationWidget<HomePage> {
 
 }
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends BaseStatefulWidget<_LoginPage> {
+  LoginPage(GlobalKey<NavigatorState> key) : super(key);
+
   @override
-  _LoginPage createState() => _LoginPage();
+  _LoginPage createState(){
+    state = _LoginPage();
+    return state!;
+  }
 }
 
-class _LoginPage extends BaseNavigationWidget<LoginPage> {
+class _LoginPage extends BaseNavigationWidget {
   _LoginPage() : super(ChengState(StateType.Main), RouteList.LoginPage);
 
   @override

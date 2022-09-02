@@ -14,15 +14,15 @@ class NavigationBarWidget extends StatefulWidget implements PreferredSizeWidget{
   final Size preferredSize; // default is 56.0
   final ScrollController scrollController;
 
-  _NavigationBar state = new _NavigationBar();
+  NavigationBar? state;
 
   @override
-  _NavigationBar createState()=> this.state = new _NavigationBar();
+  NavigationBar createState()=> this.state = new NavigationBar(NavigationBarModel());
 }
 
-class _NavigationBar extends State<NavigationBarWidget>{
-
-  final model =NavigationBarModel();
+class NavigationBar extends State<NavigationBarWidget>{
+  NavigationBar(this.model);
+  final NavigationBarModel model;
 
   @override
   void setState(fn) {
@@ -94,13 +94,13 @@ class _NavigationBar extends State<NavigationBarWidget>{
     return list;
   }
 
-   void startTimer() {
+   void startTimer() async{
     if(!model.timer)
       return;
 
      if(!model.scrollListener){
        model.scrollListener= true;
-       Future.delayed(const Duration(milliseconds: 1500), ()=>startTimer());
+       await Future.delayed(const Duration(milliseconds: 1500), ()=>startTimer());
       return ;
       }
      if(model.scrollTop)
@@ -113,8 +113,7 @@ class _NavigationBar extends State<NavigationBarWidget>{
        }
        else model.scrollHide--;
      }
-
-     Future.delayed(const Duration(milliseconds: 1000), ()=>startTimer());
+     await Future.delayed(const Duration(milliseconds: 1000), ()=>startTimer());
    }
 
   @override

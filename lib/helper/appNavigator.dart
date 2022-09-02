@@ -10,7 +10,7 @@ import '../pages/main/myApp.dart';
 class AppNavigator{
   void Function(Widget)? menuCallback;
 
-  List<int> list= [];
+  List<NavigationModel> list= [];
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   Widget? _view;
@@ -33,8 +33,8 @@ class AppNavigator{
     if(list.length > 0){
       var _context = navigatorKey.currentContext;
 
-      Navigator.pop(_context!);
       list.remove(list[list.length - 1]);
+      Navigator.pop(_context!);
     }
   }
 
@@ -42,43 +42,65 @@ class AppNavigator{
     var _context = navigatorKey.currentContext;
     list = [];
     Navigator.of(_context!).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-        getView(RouteList.HomePage)), (Route<dynamic> route) => false);
+        getView(RouteList.HomePage,GlobalKey<NavigatorState>())), (Route<dynamic> route) => false);
   }
 
   void push({RouteList? route,NavigationModel? navigation}) {
+
     if(route != null)
-      _push(NavigationModel(route: route));
+      _push(new NavigationModel(route: route));
     else if(navigation != null)
       _push(navigation);
   }
-  void _push(NavigationModel model ) {
+  void _push(NavigationModel model) {
     var _context = navigatorKey.currentContext;
-    list.add(0);
-    var v =getView(model.route);
+
+    GlobalKey<NavigatorState> key=GlobalKey<NavigatorState>();
+    model.chengState.globalKey =key;
+    list.add(model);
+    var v =getView(model.route, key);
+
 
     Navigator.push(
       _context!,
       MaterialPageRoute(builder: (context) => v, fullscreenDialog: false),
-    );
+    ).then((value) => lastWidget());
   }
 
-  Widget getView(RouteList route) {
+  void lastWidget(){
+    if(list.length == 0)
+      return;
+
+    var key =list[list.length - 1].chengState.globalKey;
+    var currentWidget = key?.currentWidget;
+    if(currentWidget != null) {
+      var model = (currentWidget as BaseStatefulWidget).state as BaseNavigationWidget;
+      print(model.navigationBarWidget.state?.model.isShow);
+      model.navigationBarWidget.state?.setState(() {
+        model.navigationBarWidget.state?.model.scrollHide = 3;
+        model.navigationBarWidget.state?.model.isShow = true;
+      });
+      print(model.navigationBarWidget.state?.model.isShow);
+    }
+  }
+
+  Widget getView(RouteList route, GlobalKey<NavigatorState> key) {
     switch (route) {
       case RouteList.HomePage:
         _routeTitle = 'صفحه اصلی';
-        return HomePage();
+        return HomePage(key);
 
       case RouteList.AboutPage:
         _routeTitle = 'درباره ما';
-        return AboutPage();
+        return AboutPage(key);
 
       case RouteList.LoginPage:
         _routeTitle = 'ورود';
-        return LoginPage();
+        return LoginPage(key);
 
       default :
         _routeTitle = 'صفحه اصلی';
-        return HomePage();
+        return HomePage(key);
     }
   }
 

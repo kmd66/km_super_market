@@ -9,8 +9,15 @@ import 'appBarWidget.dart';
 import 'bodyWidget.dart';
 import 'navigationBarWidget.dart';
 
-abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
-  BaseNavigationWidget(this.chengState, this.route, {this.title});
+abstract class BaseStatefulWidget<T> extends StatefulWidget {
+  BaseStatefulWidget(this.navigatorKey) :  super(key: navigatorKey);
+  T? state ;
+
+  final GlobalKey<NavigatorState> navigatorKey;
+}
+
+abstract class BaseNavigationWidget<BaseStatefulWidget extends StatefulWidget> extends State<BaseStatefulWidget>{
+  BaseNavigationWidget(this.chengState, this.route, {Key? key, this.title});
   final String? title;
   final ScrollController _scrollController = ScrollController();
 
@@ -26,10 +33,16 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
   StateType get stateType => chengState.stateType;
   set stateType (StateType x) => chengState.stateType = x;
 
+  @override
+  void setState(fn) {
+    if(mounted) {
+      super.setState(fn);
+    }
+  }
+
   @protected
   @mustCallSuper
   void initState() {
-
     navigationsAdd = false;
     changeState(chengState);
     navigationsAdd = true;
@@ -87,20 +100,19 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
   Widget build(BuildContext context) {
     return Directionality(textDirection: TextDirection.rtl,
         child: Stack(children: [
-      Scaffold(
-        backgroundColor: MyApp.color.baseBackground,
-        appBar: appBar.build(context),
-        body: BodyWidget(
-          child: stateBuild(context),
-          scrollController: _scrollController,
-          getTop: getTop,
-        ),
-        bottomNavigationBar:navigationBarWidget, // This trailing comma makes auto-formatting nicer for build methods.
-      ),
-    ])
+          Scaffold(
+            backgroundColor: MyApp.color.baseBackground,
+            appBar: appBar.build(context),
+            body: BodyWidget(
+              child: stateBuild(context),
+              scrollController: _scrollController,
+              getTop: getTop,
+            ),
+            bottomNavigationBar:navigationBarWidget, // This trailing comma makes auto-formatting nicer for build methods.
+          ),
+        ])
     );
   }
-
 
   @protected
   Widget stateBuild(BuildContext context);
@@ -112,12 +124,17 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
   }
 }
 
-class AboutPage extends StatefulWidget {
+class AboutPage extends BaseStatefulWidget<_AboutPage> {
+  AboutPage(GlobalKey<NavigatorState> key) : super(key);
+
   @override
-  _AboutPage createState() => _AboutPage();
+  _AboutPage createState(){
+    state = _AboutPage();
+    return state!;
+  }
 }
 
-class _AboutPage extends BaseNavigationWidget<AboutPage> {
+class _AboutPage extends BaseNavigationWidget {
   _AboutPage() : super(ChengState(StateType.Main), RouteList.AboutPage);
 
   @override
