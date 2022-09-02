@@ -31,10 +31,22 @@ class AppNavigator{
     }
 
     if(list.length > 0){
-      var _context = navigatorKey.currentContext;
-
+      var nav = list[list.length - 1];
       list.remove(list[list.length - 1]);
-      Navigator.pop(_context!);
+
+      if(nav.chengState.navigationsPush) {
+        var _context = navigatorKey.currentContext;
+        Navigator.pop(_context!);
+      }
+      else{
+        var state = getLastState();
+        if(state == null)
+          return;
+        if(state.route == MyApp.propertis.currentRoute){
+          state.streamChengState.add(nav.chengState);
+        }
+      }
+
     }
   }
 
@@ -45,13 +57,24 @@ class AppNavigator{
         getView(RouteList.HomePage,GlobalKey<NavigatorState>())), (Route<dynamic> route) => false);
   }
 
-  void push({RouteList? route,NavigationModel? navigation}) {
-
+  void push({RouteList? route,ChengState? chengState}) {
     if(route != null)
       _push(new NavigationModel(route: route));
-    else if(navigation != null)
-      _push(navigation);
+    else if(chengState != null)
+      _changeState(chengState);
   }
+  void _changeState(ChengState chengState) {
+    var state = getLastState();
+    if(state != null) {
+      MyApp.propertis.currentRoute =state.route;
+      MyApp.propertis.currentState =chengState.stateType;
+
+      chengState.navigationsPush= false;
+      list.add(new NavigationModel(route: state.route,chengState: chengState));
+      state.streamChengState.add(chengState);
+    }
+  }
+
   void _push(NavigationModel model) {
     var _context = navigatorKey.currentContext;
 
@@ -60,27 +83,41 @@ class AppNavigator{
     list.add(model);
     var v =getView(model.route, key);
 
+    MyApp.propertis.currentRoute =model.route;
+    MyApp.propertis.currentState =model.chengState.stateType;
 
     Navigator.push(
       _context!,
       MaterialPageRoute(builder: (context) => v, fullscreenDialog: false),
-    ).then((value) => lastWidget());
+    ).then((value) => _showNavigationBar());
   }
 
-  void lastWidget(){
-    if(list.length == 0)
-      return;
+  void _showNavigationBar(){
+    var state = getLastState();
+    if(state != null) {
+      state.navigationBarWidget.state?.setState(() {
+        state.navigationBarWidget.state?.model.scrollHide = 3;
+        state.navigationBarWidget.state?.model.isShow = true;
+      });
+    }
+  }
 
+  Widget? getLastWidget(){
+    if(list.length == 0)
+      return null;
     var key =list[list.length - 1].chengState.globalKey;
     var currentWidget = key?.currentWidget;
+    return currentWidget;
+  }
+
+  BaseNavigationWidget? getLastState(){
+    if(list.length == 0)
+      return null;
+
+    var currentWidget = getLastWidget();
     if(currentWidget != null) {
-      var model = (currentWidget as BaseStatefulWidget).state as BaseNavigationWidget;
-      print(model.navigationBarWidget.state?.model.isShow);
-      model.navigationBarWidget.state?.setState(() {
-        model.navigationBarWidget.state?.model.scrollHide = 3;
-        model.navigationBarWidget.state?.model.isShow = true;
-      });
-      print(model.navigationBarWidget.state?.model.isShow);
+      var state = (currentWidget as BaseStatefulWidget).state as BaseNavigationWidget;
+      return state;
     }
   }
 

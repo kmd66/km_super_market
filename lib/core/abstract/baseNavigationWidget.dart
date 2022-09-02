@@ -26,7 +26,6 @@ abstract class BaseNavigationWidget<BaseStatefulWidget extends StatefulWidget> e
   late NavigationBarWidget navigationBarWidget;
 
   ChengState chengState;
-  bool navigationsAdd = true;
   final StreamController<ChengState> streamChengState  = StreamController<ChengState>();
   final RouteList route ;
 
@@ -43,10 +42,7 @@ abstract class BaseNavigationWidget<BaseStatefulWidget extends StatefulWidget> e
   @protected
   @mustCallSuper
   void initState() {
-    navigationsAdd = false;
     changeState(chengState);
-    navigationsAdd = true;
-
     if(streamChengState.hasListener != true) {
       streamChengState.stream.listen((value) {
         changeState(value);
@@ -70,27 +66,13 @@ abstract class BaseNavigationWidget<BaseStatefulWidget extends StatefulWidget> e
   @protected
   @mustCallSuper
   void changeState(ChengState value){
-
-    // if(value.streamDialogHide) {
-    //   streamDialog.add(null);
-    // }
-
     if(value.stateType != null && stateType != null && value.stateType == StateType.None) {
-      value.navigationsAdd = false;
       value.getList = false;
       value.stateType = stateType;
     }
 
-    if(value.navigationsAdd == false)
-      navigationsAdd = false;
     if (value.scrollJump && !_scrollController.positions.isEmpty)
       _scrollController.jumpTo(0.0);
-
-    // if(navigationsAdd && stateType != value.stateType) {
-    //   AppPropertis.navigations.add(
-    //       new Navigation(route: route, chengState: value));
-    // }
-    else navigationsAdd = true;
 
     stateType = value.stateType;
   }

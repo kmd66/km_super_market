@@ -17,6 +17,7 @@ class _MainWidgetWidget extends BaseMenuWidget<MainMenuWidget> {
 
   void itemPresseRoute (RouteList route) {
     close();
+    print(route);
     MyApp.navigator.push(route: route);
   }
 
