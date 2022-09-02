@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/Widget/loading.dart';
+import '../../core/model/enums.dart';
 import '../../helper/AppNavigator.dart';
 import '../../helper/appPropertis.dart';
 import '../../helper/myCustomScrollBehavior.dart';
@@ -30,10 +34,24 @@ class MyApp extends StatefulWidget {
   }
 }
 
-
 class _MyApp extends State<MyApp> {
-
   Widget menu = Container(height: 0, width: 0);
+  var _getData = false;
+
+  Future<void>  getData() async{
+    SharedPreferences local = await SharedPreferences.getInstance();
+    if(local.containsKey('accessToken') && local.containsKey('currentUser')){
+      MyApp.propertis.accessToken = jsonDecode(local.getString('accessToken')!);
+      MyApp.propertis.currentUser = jsonDecode(local.getString('currentUser')!);
+    }
+    if(local.containsKey('nightType'))
+      MyApp.color.nightType = NightType.values.enumFromString(local.getString('nightType')!);
+    if(local.containsKey('colerType'))
+      MyApp.color.colerType = ColerType.values.enumFromString(local.getString('colerType')!);
+    if(local.containsKey('colerLinkType'))
+      MyApp.color.colerLinkType = ColerType.values.enumFromString(local.getString('colerLinkType')!);
+    _getData= true;
+  }
 
   @override
   void setState(fn) {
@@ -49,6 +67,7 @@ class _MyApp extends State<MyApp> {
   }
 
   void initialization() async {
+    await getData();
     await Future.delayed(const Duration(seconds: 1));
     FlutterNativeSplash.remove();
   }
@@ -64,7 +83,7 @@ class _MyApp extends State<MyApp> {
               theme: ThemeData(fontFamily: 'IRANSansX'),
               debugShowCheckedModeBanner: false,
               navigatorKey: MyApp.navigator.navigatorKey,
-              home: HomePage(),
+              home: view(context),
             ),
             onWillPop: (){
               MyApp.navigator.pop();
@@ -74,5 +93,10 @@ class _MyApp extends State<MyApp> {
         LoadinWidget(),
       ],),
     );
+  }
+  Widget view(BuildContext context) {
+    if(_getData)
+      return MyApp.navigator.getView(RouteList.HomePage);
+    else return Container(height: 0, width: 0);
   }
 }

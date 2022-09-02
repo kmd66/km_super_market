@@ -45,12 +45,12 @@ class _SettingsWidget extends BaseMenuWidget<SettingsWidget> {
   Future<void> _setData() async{
     SharedPreferences local = await SharedPreferences.getInstance();
     String? _nightType = NightType.values.string(MyApp.color.nightType);
-    local.setString("NightType",_nightType!);
+    local.setString("nightType",_nightType!);
 
     String? _colerType = ColerType.values.string(MyApp.color.colerType);
-    local.setString("ColerType", _colerType!);
+    local.setString("colerType", _colerType!);
     String? _colerLinkType = ColerType.values.string(MyApp.color.colerLinkType);
-    local.setString("ColerLinkType", _colerLinkType!);
+    local.setString("colerLinkType", _colerLinkType!);
   }
 
 
