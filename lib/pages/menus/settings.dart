@@ -51,17 +51,18 @@ class _SettingsWidget extends BaseMenuWidget<SettingsWidget> {
     local.setString("colerType", _colerType!);
     String? _colerLinkType = ColerType.values.string(MyApp.color.colerLinkType);
     local.setString("colerLinkType", _colerLinkType!);
+    chaeng = true;
   }
-
 
   @override
   void dispose() {
     super.dispose();
-    MyApp.events.streamLoad.add('درحال بار گزاری');
-    Future.delayed(const Duration(milliseconds: 2000), (){
-      MyApp.events.streamLoad.add(null);
-      MyApp.navigator.resetHistory();
-    });
+  }
+  @override
+  void close() {
+    super.close();
+    if( chaeng)
+      MyApp.events.menuCallback=()=> MyApp.navigator.resetHistory();
   }
 
   @override

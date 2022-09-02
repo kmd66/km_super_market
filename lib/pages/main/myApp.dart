@@ -1,7 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/Widget/loading.dart';
@@ -11,7 +11,6 @@ import '../../helper/appPropertis.dart';
 import '../../helper/myCustomScrollBehavior.dart';
 import '../../helper/objectColor.dart';
 import '../../helper/events.dart';
-import '../../main.dart';
 import '../menus/menus.dart';
 
 class MyApp extends StatefulWidget {
@@ -75,6 +74,14 @@ class _MyApp extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+      SchedulerBinding.instance.addPostFrameCallback((_){
+        print('SchedulerBinding------${MyApp.events.menuCallback}');
+        if(MyApp.events.menuCallback!= null) {
+          MyApp.events.menuCallback!();
+          MyApp.events.menuCallback = null;
+        }
+      });
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home:Stack(children: [

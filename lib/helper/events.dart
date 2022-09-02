@@ -10,4 +10,5 @@ class Events {
   StreamController<NavigationModel> streamNavigation = StreamController<NavigationModel>();
   StreamController<NavigationModel> streamonWillPopNavigation = StreamController<NavigationModel>();
   StreamController<bool> streamClosePopupState = StreamController<bool>();
+  VoidCallback? menuCallback;
 }
