@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/abstract/baseNavigationWidget.dart';
 import '../core/model/enums.dart';
+import '../core/model/navigation.dart';
 import '../main.dart';
 import '../pages/menus/main.dart';
 import '../pages/menus/settings.dart';
@@ -44,10 +45,16 @@ class AppNavigator{
         getView(RouteList.HomePage)), (Route<dynamic> route) => false);
   }
 
-  void push(RouteList route ) {
+  void push({RouteList? route,NavigationModel? navigation}) {
+    if(route != null)
+      _push(NavigationModel(route: route));
+    else if(navigation != null)
+      _push(navigation);
+  }
+  void _push(NavigationModel model ) {
     var _context = navigatorKey.currentContext;
     list.add(0);
-    var v =getView(route);
+    var v =getView(model.route);
 
     Navigator.push(
       _context!,

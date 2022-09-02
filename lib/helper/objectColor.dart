@@ -116,8 +116,8 @@ class ObjectColor {
         return yellowLink;
       case ColerType.Brown:
         return brownLink;
+      default: return yellowLink;
     }
-    return yellowLink;
   }
   Color _baseBackground() {
     switch (nightType) {

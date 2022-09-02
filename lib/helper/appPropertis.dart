@@ -11,7 +11,6 @@ class AppPropertis {
 
   RouteList currentRoute = RouteList.HomePage;
   StateType currentState = StateType.Main;
-  List<Navigation> navigations = [Navigation(route: RouteList.HomePage)];
 
   bool get isAndroid => !kIsWeb && Platform.isAndroid;
 

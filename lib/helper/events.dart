@@ -7,7 +7,7 @@ class Events {
   StreamController<Message> streamMessage = StreamController<Message>();
   StreamController<Widget> streamDialog = StreamController<Widget>();
   StreamController<String?> streamLoad = StreamController<String?>();
-  StreamController<Navigation> streamNavigation = StreamController<Navigation>();
-  StreamController<Navigation> streamonWillPopNavigation = StreamController<Navigation>();
+  StreamController<NavigationModel> streamNavigation = StreamController<NavigationModel>();
+  StreamController<NavigationModel> streamonWillPopNavigation = StreamController<NavigationModel>();
   StreamController<bool> streamClosePopupState = StreamController<bool>();
 }

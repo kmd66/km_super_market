@@ -29,7 +29,7 @@ class _HomePage extends BaseNavigationWidget<HomePage> {
       ElevatedButton(
         child: const Text('Open route'),
         onPressed: () {
-          MyApp.navigator.push(RouteList.AboutPage);
+          MyApp.navigator.push(route: RouteList.AboutPage);
         },
       ),
       ElevatedButton(
@@ -63,7 +63,7 @@ class _LoginPage extends BaseNavigationWidget<LoginPage> {
             ElevatedButton(
               child: const Text('Open route'),
               onPressed: () {
-                MyApp.navigator.push(RouteList.HomePage);
+                MyApp.navigator.push(route: RouteList.HomePage);
               },
             ),
             ElevatedButton(

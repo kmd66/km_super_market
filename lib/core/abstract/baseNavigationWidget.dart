@@ -127,7 +127,7 @@ class _AboutPage extends BaseNavigationWidget<AboutPage> {
           ElevatedButton(
             child: const Text('Open route'),
             onPressed: () {
-              MyApp.navigator.push(RouteList.LoginPage);
+              MyApp.navigator.push(route: RouteList.LoginPage);
             },
           ),
           ElevatedButton(
