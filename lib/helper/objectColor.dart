@@ -10,9 +10,6 @@ const Color bright = Color.fromRGBO(229, 229, 229, 1.0);
 const Color darkText = Color.fromRGBO(208, 208, 208, 1.0);
 const Color brightText = Color.fromRGBO(89, 90, 93, 1.0);
 
-const Color darkLink = Color.fromRGBO(119, 212, 141, 1.0);
-const Color brightLink =  Color.fromRGBO(212, 190, 119, 1.0);
-
 const Color darkCard = Color.fromRGBO(69 ,90, 100,1);
 const Color darkCard2 = Color.fromRGBO(34, 46, 53,1);
 const Color brightCard = Color.fromRGBO(255,255,255,1);
@@ -34,10 +31,19 @@ const Color blueGrey = Color.fromRGBO(120 ,144 ,156, 1);
 const Color brown = Color.fromRGBO(141 ,110 ,99, 1);
 const Color cyan = Color.fromRGBO(0, 188, 212, 1.0);
 
+const Color blueLink = Color.fromRGBO(119, 212, 204, 1.0);
+const Color yellowLink =  Color.fromRGBO(212, 190, 119, 1.0);
+const Color redLink = Color.fromRGBO(212, 119, 119, 1.0);
+const Color tealLink = Color.fromRGBO(139, 212, 119, 1.0);
+const Color puroleLink = Color.fromRGBO(119, 148, 212, 1.0);
+const Color pinkLink = Color.fromRGBO(212, 119, 193, 1.0);
+const Color brownLink = Color.fromRGBO(212, 147, 119, 1.0);
+
 class ObjectColor {
-  ColerType colerType = ColerType.Indigo;
   // NightType nightType = NightType.Dark;
   NightType nightType = NightType.Bright;
+  ColerType colerType = ColerType.Indigo;
+  ColerType colerLinkType = ColerType.Yellow;
 
   Color get base => _base();
   Color get baseTextColor => _baseTextColor();
@@ -95,12 +101,23 @@ class ObjectColor {
     }
   }
   Color _linkColor() {
-    switch (nightType) {
-      case NightType.Dark:
-        return darkLink;
-      case NightType.Bright:
-        return brightLink;
+    switch (colerLinkType) {
+      case ColerType.Red:
+        return redLink;
+      case ColerType.Purole:
+        return puroleLink;
+      case ColerType.Blue:
+        return blueLink ;
+      case ColerType.Teal:
+        return tealLink;
+      case ColerType.Pink:
+        return pinkLink;
+      case ColerType.Yellow:
+        return yellowLink;
+      case ColerType.Brown:
+        return brownLink;
     }
+    return yellowLink;
   }
   Color _baseBackground() {
     switch (nightType) {

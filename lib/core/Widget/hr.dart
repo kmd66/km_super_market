@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../helper/objectColor.dart';
-import '../../main.dart';
+import '../../pages/main/myApp.dart';
 
 //ignore: must_be_immutable
 class Hr extends StatelessWidget{

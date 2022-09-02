@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:prj/main.dart';
-
+import '../../pages/main/myApp.dart';
 import '../../helper/textStyle.dart';
 
 class LoadinWidget extends StatefulWidget {

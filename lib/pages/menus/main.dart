@@ -1,13 +1,9 @@
-import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
-
 import '../../core/Widget/appMenuItem.dart';
 import '../../core/abstract/baseMenuWidget.dart';
 import '../../core/model/enums.dart';
-import '../../helper/objectColor.dart';
 import '../../helper/textStyle.dart';
-import '../../main.dart';
+import '../main/myApp.dart';
 
 class MainMenuWidget extends StatefulWidget {
   @override

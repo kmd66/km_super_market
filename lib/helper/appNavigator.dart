@@ -4,7 +4,7 @@ import '../core/model/enums.dart';
 import '../main.dart';
 import '../pages/menus/main.dart';
 import '../pages/menus/settings.dart';
-import 'events.dart';
+import '../pages/main/myApp.dart';
 
 class AppNavigator{
   void Function(Widget)? menuCallback;

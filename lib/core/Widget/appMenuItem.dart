@@ -1,9 +1,8 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../helper/objectColor.dart';
 import '../../helper/textStyle.dart';
-import '../../main.dart';
+import '../../pages/main/myApp.dart';
 
 //ignore: must_be_immutable
 class AppMenuItem extends StatefulWidget {

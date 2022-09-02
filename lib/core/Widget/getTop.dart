@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:prj/helper/objectColor.dart';
-
-import '../../main.dart';
+import '../../pages/main/myApp.dart';
 
 class GetTop extends StatefulWidget {
   GetTop({Key? key, this.scrollController}) :  super(key: key);

@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../helper/AppNavigator.dart';
-import '../../helper/objectColor.dart';
-import '../../main.dart';
+import '../../pages/main/myApp.dart';
 import '../Widget/getTop.dart';
 import '../model/enums.dart';
 import '../model/navigation.dart';

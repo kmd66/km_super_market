@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../core/model/keyValue.dart';
 import '../core/model/message.dart' as msgModel;
-import '../main.dart';
-import 'events.dart';
+import '../pages/main/myApp.dart';
 
 class Tools {
   static void showError(dynamic err){

@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../helper/objectColor.dart';
-import '../../main.dart';
+import '../../pages/main/myApp.dart';
 import '../Widget/btn/bottomNavigationBarButton.dart';
 import '../Widget/showObj.dart';
 import '../model/enums.dart';

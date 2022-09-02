@@ -1,10 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:prj/main.dart';
-
-import '../../helper/events.dart';
-import '../../helper/objectColor.dart';
+import '../../pages/main/myApp.dart';
 import '../Widget/showObj.dart';
 import '../model/enums.dart';
 

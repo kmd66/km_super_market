@@ -2,10 +2,9 @@ import 'dart:core';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:prj/helper/objectColor.dart';
 import '../../../helper/textStyle.dart';
 import '../../../helper/tools.dart';
-import '../../../main.dart';
+import '../../../pages/main/myApp.dart';
 
 class TextInputBorder extends StatelessWidget {
   TextInputBorder(this.label, {

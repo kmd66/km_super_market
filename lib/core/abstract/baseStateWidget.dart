@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../helper/AppNavigator.dart';
+import '../../pages/main/myApp.dart';
 import '../../helper/objectColor.dart';
 import '../../helper/textStyle.dart';
-import '../../main.dart';
 import '../Widget/getTop.dart';
-import '../model/enums.dart';
 
 abstract class BaseStateWidget<T extends StatefulWidget> extends State<T> {
   BaseStateWidget({this.title });

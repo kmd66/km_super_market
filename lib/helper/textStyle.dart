@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../main.dart';
-import 'objectColor.dart';
+import '../pages/main/myApp.dart';
 
 class Style {
 
