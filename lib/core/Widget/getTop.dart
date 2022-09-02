@@ -4,8 +4,8 @@ import 'package:prj/helper/objectColor.dart';
 
 import '../../main.dart';
 
-class GetTopo extends StatefulWidget {
-  GetTopo({Key? key, this.scrollController}) :  super(key: key);
+class GetTop extends StatefulWidget {
+  GetTop({Key? key, this.scrollController}) :  super(key: key);
   final ScrollController? scrollController;
 
   bool _isShow = false;
@@ -21,15 +21,15 @@ class GetTopo extends StatefulWidget {
     }
   }
 
-  _GetTopo state = new _GetTopo();
+  _GetTop state = new _GetTop();
 
   @override
-  _GetTopo createState() {
-    return this.state = new _GetTopo();
+  _GetTop createState() {
+    return this.state = new _GetTop();
   }
 }
 
-class _GetTopo extends State<GetTopo>{
+class _GetTop extends State<GetTop>{
 
   @override
   void setState(fn) {

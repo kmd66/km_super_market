@@ -48,6 +48,17 @@ class _SettingsWidget extends BaseMenuWidget<SettingsWidget> {
     local.setString("NightType",_nightType!);
   }
 
+
+  @override
+  void dispose() {
+    super.dispose();
+    MyApp.events.streamLoad.add('درحال بار گزاری');
+    Future.delayed(const Duration(milliseconds: 2000), (){
+      MyApp.events.streamLoad.add(null);
+      MyApp.navigator.resetHistory();
+    });
+  }
+
   @override
   Widget stateBuild(BuildContext context) {
     return

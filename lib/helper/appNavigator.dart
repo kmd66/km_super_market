@@ -37,6 +37,13 @@ class AppNavigator{
     }
   }
 
+  void resetHistory() {
+    var _context = navigatorKey.currentContext;
+    list = [];
+    Navigator.of(_context!).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+        getView(RouteList.HomePage)), (Route<dynamic> route) => false);
+  }
+
   void push(RouteList route ) {
     var _context = navigatorKey.currentContext;
     list.add(0);

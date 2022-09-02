@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../helper/AppNavigator.dart';
 import '../../helper/objectColor.dart';
 import '../../main.dart';
-import '../Widget/getTopo.dart';
+import '../Widget/getTop.dart';
 import '../model/enums.dart';
 import '../model/navigation.dart';
 import 'appBarWidget.dart';
@@ -16,7 +16,7 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
   final String? title;
   final ScrollController _scrollController = ScrollController();
 
-  late GetTopo? getTopo;
+  late GetTop? getTop;
   final AppBarWidget appBar = AppBarWidget();
   late NavigationBarWidget navigationBarWidget;
 
@@ -42,7 +42,7 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
       });
     }
     navigationBarWidget =  NavigationBarWidget(scrollController: _scrollController);
-    getTopo = GetTopo(scrollController: _scrollController);
+    getTop = GetTop(scrollController: _scrollController);
 
     scroll();
     super.initState();
@@ -95,7 +95,7 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
         body: BodyWidget(
           child: stateBuild(context),
           scrollController: _scrollController,
-          getTopo: getTopo,
+          getTop: getTop,
         ),
         bottomNavigationBar:navigationBarWidget, // This trailing comma makes auto-formatting nicer for build methods.
       ),
@@ -109,7 +109,7 @@ abstract class BaseNavigationWidget<T extends StatefulWidget> extends State<T> {
 
   void scroll() {
     _scrollController.addListener(() {
-      getTopo?.scroll(_scrollController.position.pixels);
+      getTop?.scroll(_scrollController.position.pixels);
     });
   }
 }

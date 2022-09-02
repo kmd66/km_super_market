@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:prj/pages/menus/menus.dart';
+import 'core/Widget/loading.dart';
 import 'core/Widget/textInput/textInputBorder.dart';
 import 'core/abstract/baseNavigationWidget.dart';
 import 'core/model/enums.dart';
@@ -96,7 +97,8 @@ class _MyApp extends State<MyApp> {
               MyApp.navigator.pop();
               return Future.value(false);
             }),
-        menu
+        menu,
+        LoadinWidget(),
       ],),
     );
   }

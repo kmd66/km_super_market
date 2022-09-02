@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../helper/objectColor.dart';
 import '../../main.dart';
-import '../Widget/getTopo.dart';
+import '../Widget/getTop.dart';
 
 class BodyWidget extends StatelessWidget {
   final ScrollController scrollController;
-  final  GetTopo? getTopo;
+  final  GetTop? getTop;
   final  Widget child;
 
-  const BodyWidget({ required this.scrollController, this.getTopo, required this.child});
+  const BodyWidget({ required this.scrollController, this.getTop, required this.child});
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -38,7 +38,7 @@ class BodyWidget extends StatelessWidget {
             ),
           ),
         ),
-        getTopo!,
+        getTop!,
       ],
     );
   }

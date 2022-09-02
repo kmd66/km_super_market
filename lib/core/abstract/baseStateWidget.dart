@@ -5,17 +5,17 @@ import '../../helper/AppNavigator.dart';
 import '../../helper/objectColor.dart';
 import '../../helper/textStyle.dart';
 import '../../main.dart';
-import '../Widget/getTopo.dart';
+import '../Widget/getTop.dart';
 import '../model/enums.dart';
 
 abstract class BaseStateWidget<T extends StatefulWidget> extends State<T> {
   BaseStateWidget({this.title });
   final String? title;
   final _scrollController = ScrollController();
-  GetTopo? getTopo;
+  GetTop? getTop;
   @override
   void initState() {
-    getTopo = GetTopo(scrollController: _scrollController);
+    getTop = GetTop(scrollController: _scrollController);
     scroll();
     super.initState();
   }
@@ -85,7 +85,7 @@ abstract class BaseStateWidget<T extends StatefulWidget> extends State<T> {
             ),
           ),
         ),
-        getTopo!,
+        getTop!,
       ],
     );
   }
@@ -117,7 +117,7 @@ abstract class BaseStateWidget<T extends StatefulWidget> extends State<T> {
 
   void scroll() {
     _scrollController.addListener(() {
-      getTopo?.scroll(_scrollController.position.pixels);
+      getTop?.scroll(_scrollController.position.pixels);
     });
   }
 }
