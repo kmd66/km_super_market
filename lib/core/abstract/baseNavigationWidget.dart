@@ -21,9 +21,9 @@ abstract class BaseNavigationWidget<BaseStatefulWidget extends StatefulWidget> e
   final String? title;
   final ScrollController _scrollController = ScrollController();
 
-  late GetTop? getTop;
+  late GetTop? getTop = GetTop(scrollController: _scrollController);
   final AppBarWidget appBar = AppBarWidget();
-  late NavigationBarWidget navigationBarWidget;
+  late NavigationBarWidget navigationBarWidget=  NavigationBarWidget(scrollController: _scrollController);
 
   ChengState chengState;
   final StreamController<ChengState> streamChengState  = StreamController<ChengState>();
@@ -48,8 +48,6 @@ abstract class BaseNavigationWidget<BaseStatefulWidget extends StatefulWidget> e
         changeState(value);
       });
     }
-    navigationBarWidget =  NavigationBarWidget(scrollController: _scrollController);
-    getTop = GetTop(scrollController: _scrollController);
 
     scroll();
     super.initState();

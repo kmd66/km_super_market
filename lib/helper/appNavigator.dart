@@ -47,6 +47,13 @@ class AppNavigator{
         }
       }
 
+      if(list.length > 0){
+        var NavigatorState = list[list.length - 1];
+        MyApp.propertis.currentRoute =NavigatorState.route;
+        MyApp.propertis.currentState =NavigatorState.chengState.stateType;
+        _showNavigationBar();
+      }
+
     }
   }
 
@@ -89,12 +96,13 @@ class AppNavigator{
     Navigator.push(
       _context!,
       MaterialPageRoute(builder: (context) => v, fullscreenDialog: false),
-    ).then((value) => _showNavigationBar());
+    );
   }
 
   void _showNavigationBar(){
     var state = getLastState();
     if(state != null) {
+      setRouteTitle(state.route);
       state.navigationBarWidget.state?.setState(() {
         state.navigationBarWidget.state?.model.scrollHide = 3;
         state.navigationBarWidget.state?.model.isShow = true;
@@ -111,32 +119,43 @@ class AppNavigator{
   }
 
   BaseNavigationWidget? getLastState(){
-    if(list.length == 0)
-      return null;
-
     var currentWidget = getLastWidget();
     if(currentWidget != null) {
       var state = (currentWidget as BaseStatefulWidget).state as BaseNavigationWidget;
       return state;
     }
+    return null;
   }
 
-  Widget getView(RouteList route, GlobalKey<NavigatorState> key) {
+  void setRouteTitle(RouteList route) {
     switch (route) {
       case RouteList.HomePage:
         _routeTitle = 'صفحه اصلی';
+        break;
+      case RouteList.AboutPage:
+        _routeTitle = 'درباره ما';
+        break;
+      case RouteList.LoginPage:
+        _routeTitle = 'ورود';
+        break;
+      default :
+        _routeTitle = 'صفحه اصلی';
+        break;
+    }
+  }
+  Widget getView(RouteList route, GlobalKey<NavigatorState> key) {
+    setRouteTitle(route);
+    switch (route) {
+      case RouteList.HomePage:
         return HomePage(key);
 
       case RouteList.AboutPage:
-        _routeTitle = 'درباره ما';
         return AboutPage(key);
 
       case RouteList.LoginPage:
-        _routeTitle = 'ورود';
         return LoginPage(key);
 
       default :
-        _routeTitle = 'صفحه اصلی';
         return HomePage(key);
     }
   }
