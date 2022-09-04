@@ -14,14 +14,15 @@ class AppBarWidget {
           margin: const EdgeInsets.only(top: 0, right: 10.0, bottom: 0, left: 10.0),
           child:
           IconButton(
-            onPressed: ()=>MyApp.events.streamMenu.add(MenuList.Setting),
-            icon: Icon(Icons.settings),
+            onPressed: () =>MyApp.navigator.pop(),
+            icon: Icon(Icons.arrow_back_ios),
+            // icon: Icon(Icons.arrow_forward_ios),
           ),
         ),
         actions: [
           IconButton(
-            onPressed: () =>MyApp.navigator.pop(),
-            icon: Icon(Icons.arrow_forward_ios),
+            onPressed: ()=>MyApp.events.streamMenu.add(MenuList.Setting),
+            icon: Icon(Icons.settings),
           ),
         ]
     );

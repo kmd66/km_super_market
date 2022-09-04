@@ -3,6 +3,8 @@ import '../core/abstract/baseNavigationWidget.dart';
 import '../core/model/enums.dart';
 import '../core/model/navigation.dart';
 import '../main.dart';
+import '../pages/home.dart';
+import '../pages/main/about.dart';
 import '../pages/menus/main.dart';
 import '../pages/menus/settings.dart';
 import '../pages/main/myApp.dart';
