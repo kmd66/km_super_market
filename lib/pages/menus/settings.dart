@@ -57,13 +57,8 @@ class _SettingsWidget extends BaseMenuWidget<SettingsWidget> {
   @override
   void dispose() {
     super.dispose();
-    if (chaeng) {
-      MyApp.events.streamLoad.add('reset history ...');
-      Future.delayed(const Duration(milliseconds: 1500), () {
-        MyApp.navigator.resetHistory();
-        MyApp.events.streamLoad.add(null);
-      });
-    }
+    if (chaeng)
+      MyApp.events.loginController.add(LoginType.Enter);
   }
 
   @override

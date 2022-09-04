@@ -40,15 +40,15 @@ class _GetTop extends State<GetTop>{
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 20,
+      bottom: 22,
       left: 20,
       child:
       widget._isShow?
       ElevatedButton(
         onPressed: () =>_animateToTop(),
-        child: Icon(Icons.arrow_upward, color: Colors.white),
+        child: Icon(Icons.arrow_upward, color: Colors.white,size: 14,),
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(18),
           shape: CircleBorder(),
           primary: MyApp.color.base, // <-- Button color
           onPrimary: Colors.red, // <-- Splash color

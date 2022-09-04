@@ -68,3 +68,58 @@
 //   }
 //
 // }
+
+
+import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/Widget/loading.dart';
+import '../../core/abstract/baseMenuWidget.dart';
+import '../../core/model/enums.dart';
+import '../../helper/AppNavigator.dart';
+import '../../helper/appPropertis.dart';
+import '../../helper/myCustomScrollBehavior.dart';
+import '../../helper/objectColor.dart';
+import '../../helper/events.dart';
+import '../main/myApp.dart';
+import '../menus/menus.dart';
+
+class Login extends StatefulWidget {
+  Login({super.key});
+
+  @override
+  _Login createState()=>_Login();
+}
+
+class _Login extends State<Login> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home:Container(
+        child: ElevatedButton(
+          onPressed:()=>_login(),
+          child: Text('Looks like a RaisedButton'),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _login() async {
+    MyApp.propertis.accessToken = 'null';
+    MyApp.propertis.currentUser = 'null';
+    SharedPreferences local = await SharedPreferences.getInstance();
+    local.setString("currentUser", jsonEncode(MyApp.propertis.currentUser));
+    local.setString("accessToken", jsonEncode(MyApp.propertis.accessToken));
+    MyApp.events.loginController.add(LoginType.Enter);
+  }
+}

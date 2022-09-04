@@ -57,11 +57,13 @@ class AppNavigator{
     }
   }
 
-  void resetHistory() {
+  void resetHistory({Widget ? builderView}) {
     var _context = navigatorKey.currentContext;
     list = [];
+    if(builderView == null)
+      builderView = getView(RouteList.HomePage,GlobalKey<NavigatorState>());
     Navigator.of(_context!).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-        getView(RouteList.HomePage,GlobalKey<NavigatorState>())), (Route<dynamic> route) => false);
+    builderView! ), (Route<dynamic> route) => false);
   }
 
   void push({RouteList? route,ChengState? chengState}) {

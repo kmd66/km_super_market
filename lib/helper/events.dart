@@ -11,4 +11,5 @@ class Events {
   StreamController<NavigationModel> streamNavigation = StreamController<NavigationModel>();
   StreamController<NavigationModel> streamonWillPopNavigation = StreamController<NavigationModel>();
   StreamController<MenuList> streamMenu = StreamController<MenuList>();
+  StreamController<LoginType> loginController = StreamController<LoginType>();
 }

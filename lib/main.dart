@@ -9,7 +9,6 @@ import 'core/model/navigation.dart';
 import 'helper/myHttpOverrides.dart';
 
 void main() {
-  HttpOverrides.global = new MyHttpOverrides();
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(MyApp());

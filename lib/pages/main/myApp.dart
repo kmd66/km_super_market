@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import '../../helper/appPropertis.dart';
 import '../../helper/myCustomScrollBehavior.dart';
 import '../../helper/objectColor.dart';
 import '../../helper/events.dart';
+import '../login/login.dart';
 import '../menus/menus.dart';
 
 class MyApp extends StatefulWidget {
@@ -65,7 +67,18 @@ class _MyApp extends State<MyApp> {
     await getData();
     await Future.delayed(const Duration(seconds: 1));
     FlutterNativeSplash.remove();
+    loginController();
     setState(() {});
+  }
+
+  void loginController() async{
+    if(MyApp.events.loginController.hasListener)
+      MyApp.events.loginController.close();
+    MyApp.events.loginController = StreamController<LoginType>();
+    MyApp.events.loginController.stream.listen((value){
+      login(value);
+    });
+
   }
   // This widget is the root of your application.
   @override
@@ -90,10 +103,29 @@ class _MyApp extends State<MyApp> {
       ],),
     );
   }
+
   Widget view(BuildContext context) {
     if(_getData) {
-      return MyApp.navigator.getView(RouteList.HomePage,GlobalKey<NavigatorState>());
+      if(MyApp.propertis.accessToken != null)
+        return MyApp.navigator.getView(RouteList.HomePage,GlobalKey<NavigatorState>());
+      else return Login();
     }
     else return Container(height: 0, width: 0);
+  }
+
+  Future<void>  login(value) async{
+    Widget ? builderView;
+    if(value == LoginType.Exit) {
+      SharedPreferences local = await SharedPreferences.getInstance();
+      if(local.containsKey('accessToken'))
+        await local.remove("accessToken");
+      if(local.containsKey('currentUser'))
+        await local.remove("currentUser");
+
+      MyApp.propertis.accessToken = null;
+      MyApp.propertis.currentUser = null;
+      builderView = Login();
+    }
+    MyApp.navigator.resetHistory(builderView:builderView);
   }
 }

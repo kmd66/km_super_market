@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../helper/objectColor.dart';
 import '../../pages/main/myApp.dart';
-import '../Widget/showObj.dart';
 import '../model/enums.dart';
 
 abstract class BaseMenuWidget<T extends StatefulWidget> extends State<T> {
@@ -75,7 +75,7 @@ abstract class BaseMenuWidget<T extends StatefulWidget> extends State<T> {
                       FloatingActionButton(
                         child: Icon(
                           Icons.close,
-                          color: MyApp.color.baseIcon,
+                          color: bright,
                         ),
                         backgroundColor: MyApp.color.base,
                         onPressed:()=>close(),

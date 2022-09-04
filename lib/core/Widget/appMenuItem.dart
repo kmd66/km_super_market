@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../helper/textStyle.dart';
 import '../../pages/main/myApp.dart';
+import '../../helper/objectColor.dart';
 
 //ignore: must_be_immutable
 class AppMenuItem extends StatefulWidget {
@@ -61,7 +62,7 @@ class _MenuItem extends State<AppMenuItem> {
                           width: 36,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: MyApp.color.shadowBackground(.1)
+                              color: MyApp.color.linkColor
                           ),
                           child: Center(
                             child:_icon(context),
@@ -88,12 +89,12 @@ class _MenuItem extends State<AppMenuItem> {
     SvgPicture.asset(widget.svgIcon! ,
       height: 22,
       width: 22,
-      color: MyApp.color.base,
+      color: white,
     ):
     Icon(
       widget.icon,
       size:22,
-      color: MyApp.color.base,
+      color: white,
     );
   }
 }

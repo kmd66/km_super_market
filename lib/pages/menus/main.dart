@@ -59,8 +59,7 @@ class _MainWidgetWidget extends BaseMenuWidget<MainMenuWidget> {
                   onPress:()
                   {
                     close();
-                    // loginController.add(LoginType.Exit);
-                    MyApp.navigator.list =[];
+                    MyApp.events.loginController.add(LoginType.Exit);
                   }
               ),
             ],
