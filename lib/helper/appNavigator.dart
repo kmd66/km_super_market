@@ -22,6 +22,7 @@ class AppNavigator{
   String get routeUrl => _routeUrl;
 
   bool _isMenu = false;
+  bool get isMenu => _isMenu;
 
   void pop() {
     if(_isMenu){
@@ -160,7 +161,6 @@ class AppNavigator{
   }
 
   Widget getMenu(MenuList menuList){
-    print(_isMenu);
     if(menuList == MenuList.hide)
       _isMenu = false;
     else

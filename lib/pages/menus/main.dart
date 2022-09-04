@@ -29,7 +29,6 @@ class _MainWidgetWidget extends BaseMenuWidget<MainMenuWidget> {
   Widget stateBuild(BuildContext context) {
     return
       Stack(children: [
-
         Container(
             height:80,
             width: MediaQuery.of(context).size.width,
