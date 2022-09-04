@@ -8,7 +8,6 @@ import '../pages/menus/settings.dart';
 import '../pages/main/myApp.dart';
 
 class AppNavigator{
-  void Function(Widget)? menuCallback;
 
   List<NavigationModel> list= [];
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -22,11 +21,11 @@ class AppNavigator{
   String _routeUrl= '';
   String get routeUrl => _routeUrl;
 
-  bool isMenu = false;
+  bool _isMenu = false;
 
   void pop() {
-    if(isMenu){
-      MyApp.events.streamClosePopupState.add(true);
+    if(_isMenu){
+      MyApp.events.streamMenu.add(MenuList.hide);
       return;
     }
 
@@ -160,20 +159,20 @@ class AppNavigator{
     }
   }
 
-  void setMenu(MenuList menuList){
-    Widget? menuWidget;
-    if(menuList != MenuList.hide)
-      isMenu = true;
+  Widget getMenu(MenuList menuList){
+    print(_isMenu);
+    if(menuList == MenuList.hide)
+      _isMenu = false;
+    else
+    _isMenu = true;
+
     switch (menuList) {
       case MenuList.Setting:
-        menuWidget = SettingsWidget();
-        break;
+        return SettingsWidget();
       case MenuList.Main:
-        menuWidget = MainMenuWidget();
-        break;
+        return MainMenuWidget();
       default:
-        menuWidget = Container(height: 0,width: 0,);
+        return Container(height: 0,width: 0,);
     }
-    menuCallback!(menuWidget);
   }
 }

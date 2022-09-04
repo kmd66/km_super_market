@@ -55,7 +55,7 @@ class TextInputBorder extends StatelessWidget {
                 child: TextField(
                   enabled: enabled,
                   maxLength: maxLength,
-                  autofocus:true,
+                  autofocus:false,
                   controller: _controller,
                   focusNode:focusNode,
                   obscureText: obscureText,

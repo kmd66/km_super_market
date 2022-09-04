@@ -61,8 +61,8 @@ class _SettingsWidget extends BaseMenuWidget<SettingsWidget> {
   @override
   void close() {
     super.close();
-    if( chaeng)
-      MyApp.events.menuCallback=()=> MyApp.navigator.resetHistory();
+    if(chaeng)
+      MyApp.navigator.resetHistory();
   }
 
   @override

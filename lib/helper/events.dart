@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import '../core/model/enums.dart';
 import '../core/model/message.dart';
 import '../core/model/navigation.dart';
 
@@ -9,6 +10,5 @@ class Events {
   StreamController<String?> streamLoad = StreamController<String?>();
   StreamController<NavigationModel> streamNavigation = StreamController<NavigationModel>();
   StreamController<NavigationModel> streamonWillPopNavigation = StreamController<NavigationModel>();
-  StreamController<bool> streamClosePopupState = StreamController<bool>();
-  VoidCallback? menuCallback;
+  StreamController<MenuList> streamMenu = StreamController<MenuList>();
 }

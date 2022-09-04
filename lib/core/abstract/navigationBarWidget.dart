@@ -86,7 +86,7 @@ class NavigationBar extends State<NavigationBarWidget>{
                 btnIcon: x.svgIcon!,
                 title: x.title!,
                 onPress: (){
-                  x.route !=null ? MyApp.navigator.push(route: x.route!):MyApp.navigator.setMenu(x.menu!);
+                  x.route !=null ? MyApp.navigator.push(route: x.route!):MyApp.events.streamMenu.add(x.menu!);
                 }
             )
         )

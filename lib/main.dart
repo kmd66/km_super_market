@@ -29,7 +29,6 @@ class HomePage extends BaseStatefulWidget<_HomePage> {
 
 class _HomePage extends BaseNavigationWidget {
   _HomePage() : super(ChengState(StateType.Main), RouteList.HomePage);
-  String mobile='';
   @override
   Widget stateBuild(BuildContext context) {
     return Column(children: [
@@ -45,8 +44,7 @@ class _HomePage extends BaseNavigationWidget {
         },
         child: const Text('Go back!'),
       ),
-      new TextInputBorder('شماره همراه',maxLength: 11, textInputType: TextInputType.number,hintLabel:'شماره همراه خود را وارد کنید',modelLabel:'شماره همراه', model: mobile,onChange: (x)=> mobile = x,),
-      new TextInputBorder('شماره همراه',enabled: false, textInputType: TextInputType.number,hintLabel:'شماره همراه خود را وارد کنید',modelLabel:'شماره همراه', model: 'kk'),
+
 
     ]);
 
@@ -66,6 +64,7 @@ class LoginPage extends BaseStatefulWidget<_LoginPage> {
 
 class _LoginPage extends BaseNavigationWidget {
   _LoginPage() : super(ChengState(StateType.Main), RouteList.LoginPage);
+  String mobile='';
 
   @override
   Widget stateBuild(BuildContext context) {
@@ -85,6 +84,8 @@ class _LoginPage extends BaseNavigationWidget {
               child: const Text('Go back!'),
             ),
             Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
+            new TextInputBorder('شماره همراه',maxLength: 11, textInputType: TextInputType.number,hintLabel:'شماره همراه خود را وارد کنید',modelLabel:'شماره همراه', model: mobile,onChange: (x)=> mobile = x,),
+            new TextInputBorder('شماره همراه',enabled: false, textInputType: TextInputType.number,hintLabel:'شماره همراه خود را وارد کنید',modelLabel:'شماره همراه', model: 'kk'),
             Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
             Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),
             Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.green,),),

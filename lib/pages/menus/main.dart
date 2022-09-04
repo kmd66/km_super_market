@@ -17,7 +17,7 @@ class _MainWidgetWidget extends BaseMenuWidget<MainMenuWidget> {
 
   void itemPresseRoute (RouteList route) {
     close();
-    MyApp.events.menuCallback=()=> MyApp.navigator.push(route: route);
+    MyApp.navigator.push(route: route);
   }
 
   @override

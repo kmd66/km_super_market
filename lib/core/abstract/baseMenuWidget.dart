@@ -23,24 +23,13 @@ abstract class BaseMenuWidget<T extends StatefulWidget> extends State<T> {
   @protected
   @mustCallSuper
   void initState() {
-    if( MyApp.events.streamClosePopupState.hasListener == true)
-      MyApp.events.streamClosePopupState.close();
-    MyApp.events.streamClosePopupState = StreamController<bool>();
-    MyApp.events.streamClosePopupState.stream.listen((v){
-      close();
-    });
     super.initState();
   }
 
   @protected
   @mustCallSuper
   void close(){
-    if( MyApp.events.streamClosePopupState.hasListener == true)
-      MyApp.events.streamClosePopupState.close();
-    if(MyApp.navigator.isMenu) {
-      MyApp.navigator.isMenu = false;
-      MyApp.navigator.setMenu(MenuList.hide);
-    }
+    MyApp.events.streamMenu.add(MenuList.hide);
   }
 
   @protected
@@ -52,9 +41,7 @@ abstract class BaseMenuWidget<T extends StatefulWidget> extends State<T> {
 
   @override
   Widget build(BuildContext context) {
-    return ShowObj(
-        isShow:MyApp.navigator.isMenu ,
-        obj: Directionality(textDirection: TextDirection.rtl,
+    return Directionality(textDirection: TextDirection.rtl,
             child:
             Container(
                 height: MediaQuery.of(context).size.height,
@@ -95,9 +82,45 @@ abstract class BaseMenuWidget<T extends StatefulWidget> extends State<T> {
                         :Container(width: 0,height: 0,)
                 )
             )
-        )
-    );
+        );
 
   }
 
+}
+
+class MenuWidget extends StatefulWidget {
+  @override
+  _MenuWidget createState() => _MenuWidget();
+}
+
+class _MenuWidget extends State<MenuWidget> {
+
+  Widget child =Container(height: 0,width: 0,);
+
+  @override
+  void initState() {
+    initStream();
+    super.initState();
+  }
+
+  void  initStream(){
+    if( MyApp.events.streamMenu.hasListener == true)
+      MyApp.events.streamMenu.close();
+    MyApp.events.streamMenu = StreamController<MenuList>();
+    MyApp.events.streamMenu.stream.listen((v){
+      setState(() {
+        child = MyApp.navigator.getMenu(v);
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return child;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }

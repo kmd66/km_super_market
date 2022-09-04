@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/Widget/loading.dart';
+import '../../core/abstract/baseMenuWidget.dart';
 import '../../core/model/enums.dart';
 import '../../helper/AppNavigator.dart';
 import '../../helper/appPropertis.dart';
@@ -26,15 +26,11 @@ class MyApp extends StatefulWidget {
   @override
   _MyApp createState(){
     MyApp.state = new _MyApp();
-    navigator.menuCallback= (menuWidget){
-      state.setState(()=>state.menu = menuWidget);
-    };
     return MyApp.state;
   }
 }
 
 class _MyApp extends State<MyApp> {
-  Widget menu = Container(height: 0, width: 0);
   var _getData = false;
 
   Future<void>  getData() async{
@@ -74,14 +70,6 @@ class _MyApp extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-      SchedulerBinding.instance.addPostFrameCallback((_){
-        print('SchedulerBinding------${MyApp.events.menuCallback}');
-        if(MyApp.events.menuCallback!= null) {
-          MyApp.events.menuCallback!();
-          MyApp.events.menuCallback = null;
-        }
-      });
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home:Stack(children: [
@@ -97,7 +85,7 @@ class _MyApp extends State<MyApp> {
               MyApp.navigator.pop();
               return Future.value(false);
             }),
-        menu,
+        MenuWidget(),
         LoadinWidget(),
       ],),
     );

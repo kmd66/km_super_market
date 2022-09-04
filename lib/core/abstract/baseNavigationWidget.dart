@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../pages/main/myApp.dart';
 import '../Widget/getTop.dart';
+import '../Widget/textInput/textInputBorder.dart';
 import '../model/enums.dart';
 import '../model/navigation.dart';
 import 'appBarWidget.dart';
@@ -116,6 +117,7 @@ class AboutPage extends BaseStatefulWidget<_AboutPage> {
 
 class _AboutPage extends BaseNavigationWidget {
   _AboutPage() : super(ChengState(StateType.Main), RouteList.AboutPage);
+  String mobile='';
 
   @override
   Widget stateBuild(BuildContext context) {
@@ -135,6 +137,8 @@ class _AboutPage extends BaseNavigationWidget {
           ),
           Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.amber,),),
           Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.amber,),),
+          new TextInputBorder('شماره همراه',maxLength: 11, textInputType: TextInputType.number,hintLabel:'شماره همراه خود را وارد کنید',modelLabel:'شماره همراه', model: mobile,onChange: (x)=> mobile = x,),
+          new TextInputBorder('شماره همراه',enabled: false, textInputType: TextInputType.number,hintLabel:'شماره همراه خود را وارد کنید',modelLabel:'شماره همراه', model: 'kk'),
           Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.amber,),),
           Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.amber,),),
           Padding(padding: EdgeInsets.only(top: 100),child: Container(width: 10,height: 10,color: Colors.amber,),),
