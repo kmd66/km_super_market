@@ -1,6 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../../helper/objectColor.dart';
 import '../../../pages/main/myApp.dart';
 import '../../../helper/textStyle.dart';
 
@@ -8,12 +9,14 @@ import '../../../helper/textStyle.dart';
 class BottomNavigationBarButton extends StatelessWidget {
   BottomNavigationBarButton({
    this.isSelect = false,
-    required this.btnIcon,
+    this.btnIcon,
     required this.title,
-    required this.onPress
+    required this.onPress,
+    this.icon = Icons.home
   });
 
-  final String btnIcon;
+  final String? btnIcon;
+  final IconData? icon;
   bool isSelect;
   final VoidCallback onPress;
   final String title;
@@ -56,12 +59,13 @@ class BottomNavigationBarButton extends StatelessWidget {
         Center(
           child:
           btnIcon !=null?
-          SvgPicture.asset(btnIcon ,
+          SvgPicture.asset(btnIcon! ,
             height: 27,
             width: 27,
+            color: white,
           ):
-          Icon(Icons.home,
-            color: MyApp.color.baseIcon,
+          Icon(icon,
+            color: white,
           ),
         ),
 
@@ -88,12 +92,13 @@ class BottomNavigationBarButton extends StatelessWidget {
                   Center(
                     child:
                     btnIcon !=null?
-                    SvgPicture.asset(btnIcon ,
+                    SvgPicture.asset(btnIcon! ,
                       height: 27,
                       width: 27,
+                      color: white,
                     ):
-                    Icon(Icons.home,
-                      color: MyApp.color.baseIcon,
+                    Icon(icon,
+                      color: white,
                     ),
                   ) ,
                   Padding(

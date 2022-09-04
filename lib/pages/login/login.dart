@@ -77,7 +77,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/Widget/loading.dart';
 import '../../core/abstract/baseMenuWidget.dart';
+import '../../core/abstract/baseNavigationWidget.dart';
 import '../../core/model/enums.dart';
+import '../../core/model/navigation.dart';
 import '../../helper/AppNavigator.dart';
 import '../../helper/appPropertis.dart';
 import '../../helper/myCustomScrollBehavior.dart';
@@ -86,14 +88,19 @@ import '../../helper/events.dart';
 import '../main/myApp.dart';
 import '../menus/menus.dart';
 
-class Login extends StatefulWidget {
-  Login({super.key});
+class LoginPage extends BaseStatefulWidget<_LoginPage> {
+  LoginPage(GlobalKey<NavigatorState> key) : super(key);
 
   @override
-  _Login createState()=>_Login();
+  _LoginPage createState(){
+    state = _LoginPage();
+    return state!;
+  }
 }
 
-class _Login extends State<Login> {
+class _LoginPage extends BaseNavigationWidget {
+  _LoginPage() : super(ChengState(StateType.Main), RouteList.LoginPage);
+  String mobile='';
 
   @override
   void initState() {
@@ -114,6 +121,12 @@ class _Login extends State<Login> {
     );
   }
 
+  @override
+  Widget stateBuild(BuildContext context) {
+    // TODO: implement stateBuild
+    throw UnimplementedError();
+  }
+
   Future<void> _login() async {
     MyApp.propertis.accessToken = 'null';
     MyApp.propertis.currentUser = 'null';
@@ -122,4 +135,5 @@ class _Login extends State<Login> {
     local.setString("accessToken", jsonEncode(MyApp.propertis.accessToken));
     MyApp.events.loginController.add(LoginType.Enter);
   }
+
 }

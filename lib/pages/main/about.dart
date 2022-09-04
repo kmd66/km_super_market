@@ -27,7 +27,7 @@ class _AboutPage extends BaseNavigationWidget {
           ElevatedButton(
             child: const Text('Open route'),
             onPressed: () {
-              MyApp.navigator.push(route: RouteList.LoginPage);
+              MyApp.navigator.push(route: RouteList.ProfilePage);
             },
           ),
           ElevatedButton(

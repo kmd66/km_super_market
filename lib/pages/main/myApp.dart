@@ -108,7 +108,7 @@ class _MyApp extends State<MyApp> {
     if(_getData) {
       if(MyApp.propertis.accessToken != null)
         return MyApp.navigator.getView(RouteList.HomePage,GlobalKey<NavigatorState>());
-      else return Login();
+      else return LoginPage(GlobalKey<NavigatorState>());
     }
     else return Container(height: 0, width: 0);
   }
@@ -124,7 +124,7 @@ class _MyApp extends State<MyApp> {
 
       MyApp.propertis.accessToken = null;
       MyApp.propertis.currentUser = null;
-      builderView = Login();
+      builderView = LoginPage(GlobalKey<NavigatorState>());
     }
     MyApp.navigator.resetHistory(builderView:builderView);
   }

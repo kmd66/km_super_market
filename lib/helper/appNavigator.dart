@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import '../core/abstract/baseNavigationWidget.dart';
 import '../core/model/enums.dart';
 import '../core/model/navigation.dart';
-import '../main.dart';
 import '../pages/home.dart';
 import '../pages/main/about.dart';
 import '../pages/menus/main.dart';
 import '../pages/menus/settings.dart';
 import '../pages/main/myApp.dart';
+import '../pages/profile/profile.dart';
 
 class AppNavigator{
 
@@ -139,8 +139,8 @@ class AppNavigator{
       case RouteList.AboutPage:
         _routeTitle = 'درباره ما';
         break;
-      case RouteList.LoginPage:
-        _routeTitle = 'ورود';
+      case RouteList.ProfilePage:
+        _routeTitle = 'پروفایل';
         break;
       default :
         _routeTitle = 'صفحه اصلی';
@@ -156,8 +156,8 @@ class AppNavigator{
       case RouteList.AboutPage:
         return AboutPage(key);
 
-      case RouteList.LoginPage:
-        return LoginPage(key);
+      case RouteList.ProfilePage:
+        return ProfilePage(key);
 
       default :
         return HomePage(key);

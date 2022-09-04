@@ -13,17 +13,13 @@ class Menus  {
         route: RouteList.AboutPage,
         svgIcon: 'assets/svg/bag.svg'),
     MenuItemModel(AppMenuType.Nav, index: 3,
-        title: 'ورود',
-        route: RouteList.LoginPage,
-        svgIcon: 'assets/svg/search.svg'),
+        title: 'پروفایل',
+        route: RouteList.ProfilePage,
+        icon: Icons.verified_user),
     MenuItemModel(AppMenuType.Nav, index: 4,
         title: 'منو',
         menu: MenuList.Main,
         svgIcon: 'assets/svg/menu.svg'),
-    MenuItemModel(AppMenuType.Sid, index: 6,
-        title: 'پروفایل',
-        route: RouteList.ProfilePage,
-        icon: Icons.verified_user),
 
   ];
 }

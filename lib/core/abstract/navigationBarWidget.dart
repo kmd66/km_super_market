@@ -83,7 +83,8 @@ class NavigationBar extends State<NavigationBarWidget>{
       if(x.type == AppMenuType.Nav )
         list.add(
             BottomNavigationBarButton(
-                btnIcon: x.svgIcon!,
+                btnIcon: x.svgIcon,
+                icon: x.icon,
                 title: x.title!,
                 onPress: (){
                   x.route !=null ? MyApp.navigator.push(route: x.route!):MyApp.events.streamMenu.add(x.menu!);
