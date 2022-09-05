@@ -13,6 +13,11 @@ class AppNavigator{
 
   List<NavigationModel> list= [];
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  GlobalKey<NavigatorState> _mainObjKey = GlobalKey<NavigatorState>();
+  GlobalKey<NavigatorState>  get mainObjKey {
+    _mainObjKey = GlobalKey<NavigatorState>();
+    return _mainObjKey;
+  }
 
   Widget? _view;
   Widget? get view => _view;
@@ -31,7 +36,6 @@ class AppNavigator{
       MyApp.events.streamMenu.add(MenuList.hide);
       return;
     }
-
     if(list.length > 0){
       var nav = list[list.length - 1];
       list.remove(list[list.length - 1]);
@@ -63,9 +67,10 @@ class AppNavigator{
     var _context = navigatorKey.currentContext;
     list = [];
     if(builderView == null)
-      builderView = getView(RouteList.HomePage,GlobalKey<NavigatorState>());
-    Navigator.of(_context!).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-    builderView! ), (Route<dynamic> route) => false);
+      builderView = getView(RouteList.HomePage, mainObjKey);
+    Navigator.of(_context!).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) =>  builderView! ), (Route<dynamic> route) => false
+    );
   }
 
   void push({RouteList? route,ChengState? chengState}) {
@@ -80,8 +85,10 @@ class AppNavigator{
       MyApp.propertis.currentRoute =state.route;
       MyApp.propertis.currentState =chengState.stateType;
 
+
       chengState.navigationsPush= false;
-      list.add(new NavigationModel(route: state.route,chengState: chengState));
+      if(chengState.navigationsAdd)
+        list.add(new NavigationModel(route: state.route,chengState: chengState));
       state.streamChengState.add(chengState);
     }
   }
@@ -116,7 +123,10 @@ class AppNavigator{
 
   Widget? getLastWidget(){
     if(list.length == 0)
-      return null;
+    {
+      var mainWidget = _mainObjKey.currentWidget;
+      return mainWidget;
+    }
     var key =list[list.length - 1].chengState.globalKey;
     var currentWidget = key?.currentWidget;
     return currentWidget;

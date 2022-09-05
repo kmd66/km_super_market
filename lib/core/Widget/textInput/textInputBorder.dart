@@ -59,7 +59,10 @@ class TextInputBorder extends StatelessWidget {
                   controller: _controller,
                   focusNode:focusNode,
                   obscureText: obscureText,
-                  onChanged: (value)=>onChange??(value) ,
+                  onChanged: (value){
+                    if(onChange!=null)
+                      onChange!(value);
+                  },
                   keyboardType: textInputType,
                   inputFormatters: [
                     textInputType == TextInputType.number?

@@ -1,4 +1,3 @@
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../helper/textStyle.dart';
@@ -85,13 +84,7 @@ class _MenuItem extends State<AppMenuItem> {
   }
 
   Widget _icon(BuildContext context) {
-    return widget.svgIcon != null ?
-    SvgPicture.asset(widget.svgIcon! ,
-      height: 22,
-      width: 22,
-      color: white,
-    ):
-    Icon(
+    return Icon(
       widget.icon,
       size:22,
       color: white,

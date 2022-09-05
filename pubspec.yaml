@@ -36,7 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.3
   shared_preferences: ^2.0.7
-  flutter_svg: ^1.1.2
   flutter_native_splash: ^2.2.8
   url_launcher: ^6.1.5
 
@@ -66,6 +65,10 @@ flutter:
         - asset: assets/fonts/IRANSansX-UltraLight.ttf
           style: italic
           weight: 700
+    - family: icomoon
+      fonts:
+        - asset: assets/fonts/icomoon.ttf
+          weight: 900
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -76,10 +79,10 @@ flutter:
     - assets/
     - assets/img/
     - assets/img/profile_picture.jpg
-    - assets/svg/
-    - assets/svg/menu.svg
-    - assets/svg/home.svg
-    - assets/svg/bag.svg
-    - assets/svg/search.svg
+    - assets/img/1.png
+    - assets/img/2.png
+    - assets/img/3.png
+    - assets/img/4.png
+    - assets/img/5.png
 
 

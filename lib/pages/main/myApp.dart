@@ -78,8 +78,8 @@ class _MyApp extends State<MyApp> {
     MyApp.events.loginController.stream.listen((value){
       login(value);
     });
-
   }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -107,10 +107,10 @@ class _MyApp extends State<MyApp> {
   Widget view(BuildContext context) {
     if(_getData) {
       if(MyApp.propertis.accessToken != null)
-        return MyApp.navigator.getView(RouteList.HomePage,GlobalKey<NavigatorState>());
-      else return LoginPage(GlobalKey<NavigatorState>());
+        return MyApp.navigator.getView(RouteList.HomePage, MyApp.navigator.mainObjKey);
+      else return new LoginPage(MyApp.navigator.mainObjKey);
     }
-    else return Container(height: 0, width: 0);
+    else return new Container(height: 0, width: 0);
   }
 
   Future<void>  login(value) async{
@@ -124,7 +124,7 @@ class _MyApp extends State<MyApp> {
 
       MyApp.propertis.accessToken = null;
       MyApp.propertis.currentUser = null;
-      builderView = LoginPage(GlobalKey<NavigatorState>());
+      builderView = new LoginPage(MyApp.navigator.mainObjKey);
     }
     MyApp.navigator.resetHistory(builderView:builderView);
   }

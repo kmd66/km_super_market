@@ -1,4 +1,3 @@
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../helper/objectColor.dart';
@@ -58,12 +57,6 @@ class BottomNavigationBarButton extends StatelessWidget {
         child:
         Center(
           child:
-          btnIcon !=null?
-          SvgPicture.asset(btnIcon! ,
-            height: 27,
-            width: 27,
-            color: white,
-          ):
           Icon(icon,
             color: white,
           ),
@@ -90,14 +83,7 @@ class BottomNavigationBarButton extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Center(
-                    child:
-                    btnIcon !=null?
-                    SvgPicture.asset(btnIcon! ,
-                      height: 27,
-                      width: 27,
-                      color: white,
-                    ):
-                    Icon(icon,
+                    child: Icon(icon,
                       color: white,
                     ),
                   ) ,

@@ -74,6 +74,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:prj/pages/login/states/instructions.dart';
+import 'package:prj/pages/login/states/main.dart';
+import 'package:prj/pages/login/states/secretStampSms.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/Widget/loading.dart';
 import '../../core/abstract/baseMenuWidget.dart';
@@ -87,9 +90,11 @@ import '../../helper/objectColor.dart';
 import '../../helper/events.dart';
 import '../main/myApp.dart';
 import '../menus/menus.dart';
+import 'obj.dart';
 
 class LoginPage extends BaseStatefulWidget<_LoginPage> {
   LoginPage(GlobalKey<NavigatorState> key) : super(key);
+ final Obj obj = new Obj();
 
   @override
   _LoginPage createState(){
@@ -98,32 +103,49 @@ class LoginPage extends BaseStatefulWidget<_LoginPage> {
   }
 }
 
-class _LoginPage extends BaseNavigationWidget {
+class _LoginPage extends BaseNavigationWidget<LoginPage> {
   _LoginPage() : super(ChengState(StateType.Main), RouteList.LoginPage);
-  String mobile='';
+  Obj get obj => widget.obj;
 
   @override
   void initState() {
     super.initState();
   }
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home:Container(
-        child: ElevatedButton(
-          onPressed:()=>_login(),
-          child: Text('Looks like a RaisedButton'),
-        ),
-      ),
-    );
+  void changeState(ChengState value ,{navigationsAdd = true}) {
+    super.changeState(value);
+    setState(() {});
   }
 
   @override
+  Widget build(BuildContext context) {
+    return Directionality(textDirection: TextDirection.rtl,
+        child:Scaffold(
+            appBar: PreferredSize(preferredSize: Size(0.0, 0.0),child: Container(),),
+            body: Container(
+                width: MediaQuery.of(context).size.width ,
+                height: MediaQuery.of(context).size.height ,
+                decoration: BoxDecoration(
+                  color: MyApp.color.baseBackground,
+                ),
+                child:view()
+            )
+        )
+    );
+  }
+
+  Widget view() {
+    if(stateType ==  StateType.Main)
+      return new Main(obj);
+    else if(stateType ==  StateType.Instructions)
+      return new Instructions(obj);
+    else return new secretStampSms(obj);
+  }
+
+
+  @override
   Widget stateBuild(BuildContext context) {
-    // TODO: implement stateBuild
     throw UnimplementedError();
   }
 

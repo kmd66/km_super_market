@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import '../../core/model/enums.dart';
 import '../../core/model/menuItemModel.dart';
+import '../../helper/appFont.dart';
 
 class Menus  {
   List<MenuItemModel> items = [
     MenuItemModel(AppMenuType.Nav, index: 1,
         title: 'صفحه اصلی',
         route: RouteList.HomePage,
-        svgIcon: 'assets/svg/home.svg'),
+        icon: AppFont.home1),
     MenuItemModel(AppMenuType.Nav, index: 2,
         title: 'درباره ما',
         route: RouteList.AboutPage,
-        svgIcon: 'assets/svg/bag.svg'),
+        icon: AppFont.bag1),
     MenuItemModel(AppMenuType.Nav, index: 3,
         title: 'پروفایل',
         route: RouteList.ProfilePage,
-        icon: Icons.verified_user),
+        icon: AppFont.user1),
     MenuItemModel(AppMenuType.Nav, index: 4,
         title: 'منو',
         menu: MenuList.Main,
-        svgIcon: 'assets/svg/menu.svg'),
+        icon: Icons.menu),
 
   ];
 }
