@@ -5,7 +5,7 @@ const Color white = Color.fromRGBO(255 ,255, 255, 1.0);
 const Color black = Color.fromRGBO(0,0,0, 1.0);
 
 const Color dark = Color.fromRGBO(55 ,71, 79, 1);
-const Color bright = Color.fromRGBO(229, 229, 229, 1.0);
+const Color bright = Color.fromRGBO(240, 240, 240, 1.0);
 
 const Color darkText = Color.fromRGBO(208, 208, 208, 1.0);
 const Color brightText = Color.fromRGBO(89, 90, 93, 1.0);
