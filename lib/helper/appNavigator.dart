@@ -57,9 +57,12 @@ class AppNavigator{
         var NavigatorState = list[list.length - 1];
         MyApp.propertis.currentRoute =NavigatorState.route;
         MyApp.propertis.currentState =NavigatorState.chengState.stateType;
-        _showNavigationBar();
       }
-
+      else{
+        MyApp.propertis.currentRoute =RouteList.HomePage;
+        MyApp.propertis.currentState =StateType.Main;
+      }
+      _showNavigationBar();
     }
   }
 
