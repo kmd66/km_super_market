@@ -67,9 +67,11 @@ class AppNavigator{
       _showNavigationBar();
     }
     else{
-      if (Platform.isAndroid) {
-        SystemNavigator.pop();
-      }
+      try {
+        if (Platform.isAndroid) {
+        _showExitDialog();
+        }
+      } catch (e) {}
     }
 
   }
@@ -200,4 +202,32 @@ class AppNavigator{
         return Container(height: 0,width: 0,);
     }
   }
+
+  void _showExitDialog() {
+    var _context = navigatorKey.currentContext;
+
+    showDialog(
+      context: _context!,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("خروج"),
+          content: Text("آیا میخواهید از برنامه خارج شوید؟"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("خیر"),
+              onPressed:  ()=>Navigator.pop(context),
+            ),
+            TextButton(
+              child: Text("بله"),
+              onPressed:  (){
+                Navigator.pop(context);
+                SystemNavigator.pop();
+              },
+            )
+          ],
+        );
+      },
+    );
+  }
+
 }
