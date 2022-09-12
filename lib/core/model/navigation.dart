@@ -11,7 +11,7 @@ class ChengState{
   bool getList;
   bool streamDialogHide;
   dynamic data;
-  ChengState(this.stateType, {this.data , this.globalKey, this.navigationsAdd = true, this.navigationsPush = true, this.getList = true, this.streamDialogHide = false, this.scrollJump = true});
+  ChengState(this.stateType, {this.data , this.globalKey, this.navigationsAdd = false, this.navigationsPush = true, this.getList = true, this.streamDialogHide = false, this.scrollJump = true});
   static base() => new ChengState(StateType.Main);
 }
 class NavigationModel{

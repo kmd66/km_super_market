@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../core/abstract/baseNavigationWidget.dart';
 import '../core/model/enums.dart';
 import '../core/model/navigation.dart';
@@ -64,6 +66,12 @@ class AppNavigator{
       }
       _showNavigationBar();
     }
+    else{
+      if (Platform.isAndroid) {
+        SystemNavigator.pop();
+      }
+    }
+
   }
 
   void resetHistory({Widget ? builderView}) {

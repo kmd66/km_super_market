@@ -40,8 +40,7 @@ class Main extends StatelessWidget{
 
 
   Future<void> checkUser_fake() async {
-    print('obj.loginModel.CellPhone   ${obj.loginModel.CellPhone}');
-    MyApp.navigator.push(chengState: new ChengState(StateType.SecretStampSms, navigationsAdd: false));
+    MyApp.navigator.push(chengState: new ChengState(StateType.SecretStampSms));
     // streamChengState.add();
   }
 

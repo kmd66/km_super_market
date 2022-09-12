@@ -52,7 +52,7 @@ class secretStampSms extends StatelessWidget{
         'ویرایش اطلاعات ورود',
         pading: EdgeInsets.only(left: 19.0, right: 19.0, top: 3.0, bottom: 19.0),
         onPress:()=>
-            MyApp.navigator.push(chengState: new ChengState(StateType.Main, navigationsAdd: false)),
+            MyApp.navigator.push(chengState: new ChengState(StateType.Main)),
       ),
     ]);
   }
@@ -165,6 +165,6 @@ class secretStampSms extends StatelessWidget{
   Future<void> sendSms() async {}
 
   Future<void> checkUser_fake() async {
-    MyApp.navigator.push(chengState: new ChengState(StateType.Instructions, navigationsAdd: false));
+    MyApp.navigator.push(chengState: new ChengState(StateType.Instructions));
   }
 }
