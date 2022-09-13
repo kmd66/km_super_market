@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prj/helper/textStyle.dart';
+import 'package:prj/pages/login/obj.dart';
+import '../core/Widget/btn/baseBorderButton.dart';
 import '../core/Widget/card/card1.dart';
 import '../core/Widget/card/cardMore.dart';
 import '../core/Widget/sections/containerBackColor.dart';
@@ -9,6 +11,8 @@ import '../core/Widget/slideShow.dart';
 import '../core/abstract/baseNavigationWidget.dart';
 import '../core/model/enums.dart';
 import '../core/model/navigation.dart';
+import '../helper/appFont.dart';
+import '../helper/objectColor.dart';
 import 'main/myApp.dart';
 
 class HomePage extends BaseStatefulWidget<_HomePage> {
@@ -26,6 +30,14 @@ class _HomePage extends BaseNavigationWidget {
   @override
   Widget stateBuild(BuildContext context) {
     return Column(children: [
+      BaseBorderButton(
+        '',
+        btnColor: MyApp.color.baseTextColor,
+        pading: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 7.0),
+        onPress:() {},
+        icon: AppFont.search_normal_11,
+        textStyle: Style.h4(),
+      ),
 
       SlideShow(
         padding: EdgeInsets.symmetric(vertical: 14.0),

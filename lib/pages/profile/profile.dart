@@ -6,6 +6,7 @@ import '../../core/abstract/baseNavigationWidget.dart';
 import '../../core/model/enums.dart';
 import '../../core/model/navigation.dart';
 import '../main/myApp.dart';
+import '../map.dart';
 
 class ProfilePage extends BaseStatefulWidget<_ProfilePage> {
   ProfilePage(GlobalKey<NavigatorState> key) : super(key);
@@ -23,6 +24,11 @@ class _ProfilePage extends BaseNavigationWidget {
 
   @override
   Widget stateBuild(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: map(),
+    );
     return Container(
       child: Center(
           child: Column(children: [
