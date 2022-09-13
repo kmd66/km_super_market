@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prj/helper/textStyle.dart';
@@ -6,6 +5,7 @@ import '../core/Widget/card/card1.dart';
 import '../core/Widget/card/cardMore.dart';
 import '../core/Widget/sections/containerBackColor.dart';
 import '../core/Widget/sections/rowSpaceBetween.dart';
+import '../core/Widget/slideShow.dart';
 import '../core/abstract/baseNavigationWidget.dart';
 import '../core/model/enums.dart';
 import '../core/model/navigation.dart';
@@ -26,6 +26,22 @@ class _HomePage extends BaseNavigationWidget {
   @override
   Widget stateBuild(BuildContext context) {
     return Column(children: [
+
+      SlideShow(
+        padding: EdgeInsets.symmetric(vertical: 14.0),
+        height: 200,
+        children: [
+          Image.asset('assets/img/slid1.jpg',
+            fit: BoxFit.fill,
+          ),
+          Image.asset('assets/img/slid1.jpg',
+            fit: BoxFit.fill,
+          ),
+          Image.asset('assets/img/slid1.jpg',
+            fit: BoxFit.fill,
+          )
+        ],
+      ),
 
       RowSpaceBetween(
         Text('دسته بندی ها', maxLines: 1,style: Style.h4(fontWeight: FontWeight.bold),),
